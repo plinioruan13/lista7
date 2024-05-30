@@ -1,0 +1,141 @@
+# lista7
+
+#Exercício 1)
+def freq_caracteres(palavra):
+  palavras={}
+
+  for letra in palavra:
+    if letra in palavras:
+      palavras[letra]+=1
+    else:
+      palavras[letra]=1
+  return palavras
+
+palavra=str(input("Insira a palavra: "))
+print(freq_caracteres(palavra))
+
+
+#Exercício 2)
+
+def calculo_total(lista_compras):
+  
+  produtos = {}
+  lista1=[]
+
+  toimtes=int(input("numero de items na loja: "))
+  for i in range(toimtes):
+    items=str(input("item: "))
+    preco=float(input("preco: "))
+    produtos[items]=preco
+
+  for nome in lista_compras.split(", "):
+    if nome in produtos:
+      lista1.append(produtos.get(nome))
+  soma=sum(lista1)
+  return soma
+
+lista_compras=input("Insira os produtos separados por vírgula: ")
+print("O valor dos itens disponiveis é: ", calculo_total(lista_compras))
+
+
+#Exercício 3)
+
+def lingua_q(palavra):
+
+  consoantes="bcdfghjklmnpqrstvwxyz"
+  traducao = ""
+
+  for letra in palavra.lower():
+    if letra in consoantes:
+      traducao += letra + "q" + letra
+    else:
+      traducao += letra
+  return traducao
+
+palavra=str(input("Insira a palavra a ser traduzida: "))
+print(lingua_q(palavra))
+
+
+#Exercício 4)
+
+def qtd_divisores(numero):
+  
+  lista=[]
+  for divisor in range(1,numero+1):
+    if numero%divisor==0:
+      lista.append(divisor)
+  return lista
+
+numero=int(input("Insira um número: "))
+soma=sum(qtd_divisores(numero))-numero
+if soma==numero: 
+  resultado=" portanto, igual ao próprio numero"
+else: 
+  resultado=" portanto, diferente ao número"
+print("a soma dos divisores de ", numero, "é ", soma , resultado)
+
+
+#Exercício 5)
+
+def numero_primo(numero):
+
+  if numero%2==0:
+    return False
+  else:
+    for contagem in list(range(3,numero,2)):
+      if numero%contagem==0:
+        return False
+      else:
+        return True
+
+numero=int(input("Insira um número: "))
+print("O número", numero, "é primo? ",numero_primo(numero))
+
+#Exercício 6)
+
+def soma_alternada(n):
+
+  somatorio=0 
+  for numero in list(range(1,n+1)):
+    somatorio+=((-1)**(numero+1))/numero
+  return somatorio
+
+n=int(input("Insira o valor de N: "))
+print(soma_alternada(n))
+
+
+#Exercício 7)
+
+def iteravel(elem, objeto):
+  contagem=0
+
+  for repetido in objeto.split():
+    if repetido in elem:
+      contagem+=1
+  return contagem
+
+objeto=input("Insira o objeto a ser analisado: ")
+elem=input("Insira o elemento: ")
+print("A quantidade de repetições é: ", iteravel(elem,objeto))
+
+
+#Exercício 8)
+
+def count_element_in_slice(iterable, elem, ini, fim):
+
+    count = 0
+    if ini < 0:
+        ini = 0
+    if fim > len(iterable):
+        fim = len(iterable)
+    for i in range(ini, fim):
+        if iterable[i] == elem:
+            count += 1
+    return count
+
+iterable = input("Digite um iterável (string, lista ou tupla): ")
+elem = input("Digite o elemento a ser contado: ")
+ini = int(input("Digite o índice inicial: "))
+fim = int(input("Digite o índice final: "))
+print(count_element_in_slice(iterable, elem, ini, fim))
+
