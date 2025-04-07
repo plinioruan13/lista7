@@ -1,0 +1,4125 @@
+#AddFunc Userform
+
+Private Sub Label5_Click()
+InserirFuncionario
+End Sub
+Private Sub Label1_Click()
+Unload Me
+End Sub
+
+Private Sub Label6_Click()
+ExcluirFuncionarios
+End Sub
+
+Private Sub Label4_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label4.Font.Bold = True
+End Sub
+
+Private Sub Label4_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label4.Font.Bold = False
+End Sub
+
+Private Sub Label5_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = True
+End Sub
+
+Private Sub Label5_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = False
+End Sub
+
+Private Sub Label6_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label6.Font.Bold = True
+End Sub
+
+Private Sub Label6_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label6.Font.Bold = False
+End Sub
+
+Private Sub UserForm_Activate()
+HideTitleBarAndBorder Me 'hide the titlebar and border
+MakeUserFormTransparent Me  'make certain color transparent
+End Sub
+
+Private Sub UserForm_Initialize()
+
+EfeitoDiminuir Me
+
+
+With Me.lvwFuncionarios
+     .ColumnHeaders.Add , , "ID", 50
+     .ColumnHeaders.Add , , "Nome", 115
+     .ColumnHeaders.Add , , "Cargo", 90
+     .ColumnHeaders.Add , , "Email", 250
+End With
+
+txtSBpicked.ZOrder (1)
+lblpicked.ZOrder (1)
+lblSidebar.ZOrder (1)
+
+CarregarFuncionarios
+End Sub
+
+Private Sub btnExpandir_Click()
+    EfeitoAumentar Me
+End Sub
+
+Private Sub btnFechar_Click()
+    EfeitoDiminuir Me
+End Sub
+
+Private Sub CommandButton1_Click()
+
+txtSBpicked.ZOrder (1)
+lblSidebar.ZOrder (1)
+End Sub
+
+Private Sub IcSBdiminuir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+Private Sub IcSBexpandir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+Private Sub txtSBsetaDOWN_Click()
+    Me.txtSB2add.Visible = True
+    Me.txtSB2gere.Visible = True
+    Me.txtSBsetaDOWN.Visible = False
+    Me.txtSBsetaUP.Visible = True
+    Me.txtSBbarrinha.Visible = True
+End Sub
+
+Private Sub txtSBsetaUP_Click()
+    Me.txtSB2add.Visible = False
+    Me.txtSB2gere.Visible = False
+    Me.txtSBsetaUP.Visible = False
+    Me.txtSBsetaDOWN.Visible = True
+    Me.txtSBbarrinha.Visible = False
+End Sub
+
+Private Sub UserForm_Click()
+    If lblSidebar.Width > 100 Then
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+
+Private Sub txtSB2Gere_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Gere_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = True
+End Sub
+
+Private Sub txtSB2Add_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Add_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = True
+End Sub
+
+Private Sub txtSBtarefas_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = False
+End Sub
+
+Private Sub txtSBtarefas_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereCli_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereCli_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereFunc_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereFunc_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = True
+
+End Sub
+
+Private Sub txtSBajuda_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = False
+End Sub
+
+Private Sub txtSBajuda_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = True
+End Sub
+
+Private Sub txtSBHist_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = False
+End Sub
+
+Private Sub txtSBHist_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = True
+End Sub
+
+Private Sub txtSBcrm_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = False
+End Sub
+
+Private Sub txtSBcrm_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = True
+End Sub
+
+
+------------
+#AddFunc módulo
+
+Sub InserirFuncionario()
+    ' Garante que a conexão esteja ativa
+    Call Conectar
+    If conn Is Nothing Then Exit Sub
+
+    ' Captura os valores dos TextBoxes do UserForm AddFunc
+    Dim nome As String, cargo As String, email As String
+    nome = Trim(AddFunc.txtNome.Value)
+    cargo = Trim(AddFunc.txtCargo.Value)
+    email = Trim(AddFunc.txtEmail.Value)
+
+    ' Verifica se os campos estão vazios
+    If nome = "" Or cargo = "" Or email = "" Then
+        MsgBox "Preencha todos os campos antes de salvar!", vbExclamation
+        conn.Close
+        Set conn = Nothing
+        Exit Sub
+    End If
+
+    ' Monta o SQL de inserção
+    Dim sql As String
+    sql = "INSERT INTO BD_Funcionários (Nome, Cargo, Email) " & _
+          "VALUES ('" & nome & "', '" & cargo & "', '" & email & "')"
+
+    ' Debug: Mostra a Query SQL antes de executar
+    ' MsgBox "Query SQL: " & sql
+
+    ' Executa diretamente no objeto de conexão
+    On Error Resume Next
+    conn.Execute sql
+    If Err.Number <> 0 Then
+        MsgBox "Erro ao inserir dados: " & Err.Description, vbCritical
+    Else
+        MsgBox "Funcionário cadastrado com sucesso!", vbInformation
+    End If
+    On Error GoTo 0
+
+    ' Fechar conexão
+    conn.Close
+    Set conn = Nothing
+    
+        With AddFunc
+        .txtNome.Value = ""
+        .txtCargo.Value = ""
+        .txtEmail.Value = ""
+    End With
+    
+    ' Atualiza o ListView para refletir a exclusão
+    CarregarFuncionarios
+End Sub
+
+Sub CarregarFuncionarios()
+    ' Garante que a conexão esteja ativa
+    Call Conectar
+    If conn Is Nothing Then Exit Sub
+
+    ' Limpa os dados antigos do ListView
+    With AddFunc.lvwFuncionarios
+        .ListItems.Clear
+    End With
+
+    ' Consulta SQL para buscar todos os funcionários ordenados por ID
+    Dim sql As String
+    sql = "SELECT ID_Func, Nome, Cargo, Email FROM BD_Funcionários ORDER BY ID_Func"
+
+    ' Criar um Recordset para armazenar os dados
+    Dim rs As Object
+    Set rs = CreateObject("ADODB.Recordset")
+
+    ' Executa a consulta
+    On Error Resume Next
+    rs.Open sql, conn
+    If Err.Number <> 0 Then
+        MsgBox "Erro ao carregar funcionários: " & Err.Description, vbCritical
+        rs.Close
+        conn.Close
+        Set rs = Nothing
+        Set conn = Nothing
+        Exit Sub
+    End If
+    On Error GoTo 0
+
+    ' Adiciona os dados ao ListView
+    Dim item As Object
+    Do While Not rs.EOF
+        ' Adiciona a primeira coluna (ID)
+        Set item = AddFunc.lvwFuncionarios.ListItems.Add(, , rs.Fields("ID_Func").Value)
+        
+        ' Adiciona as colunas subsequentes (Nome, Cargo, Email)
+        item.SubItems(1) = rs.Fields("Nome").Value
+        item.SubItems(2) = rs.Fields("Cargo").Value
+        item.SubItems(3) = rs.Fields("Email").Value
+        
+        rs.MoveNext
+    Loop
+
+    ' Fecha o Recordset
+    rs.Close
+    conn.Close
+    Set rs = Nothing
+    Set conn = Nothing
+End Sub
+
+Sub ExcluirFuncionarios()
+    ' Verifica se alguma linha está selecionada
+    If AddFunc.lvwFuncionarios.SelectedItem Is Nothing Then
+        MsgBox "Selecione um funcionário para excluir!", vbExclamation
+        Exit Sub
+    End If
+
+    ' Obtém o ID do funcionário selecionado
+    Dim ID_Func As String
+    ID_Func = AddFunc.lvwFuncionarios.SelectedItem.Text ' O ID está na primeira coluna
+
+    ' Exibe uma mensagem de confirmação
+    Dim resposta As VbMsgBoxResult
+    resposta = MsgBox("Tem certeza que deseja excluir o funcionário ID " & ID_Func & "?", vbYesNo + vbQuestion, "Confirmar Exclusão")
+
+    ' Se o usuário escolher "Não", sai da sub
+    If resposta = vbNo Then Exit Sub
+
+    ' Chama a função de conexão
+    Call Conectar
+    If conn Is Nothing Then Exit Sub
+
+    ' Comando SQL para excluir o funcionário
+    Dim sql As String
+    sql = "DELETE FROM BD_Funcionários WHERE ID_Func = " & ID_Func
+
+    ' Executa a exclusão
+    On Error Resume Next
+    conn.Execute sql
+    If Err.Number <> 0 Then
+        MsgBox "Erro ao excluir funcionário: " & Err.Description, vbCritical
+    Else
+        MsgBox "Funcionário excluído com sucesso!", vbInformation
+    End If
+    On Error GoTo 0
+
+    ' Fecha a conexão
+    conn.Close
+    Set conn = Nothing
+
+    ' Atualiza o ListView para refletir a exclusão
+    CarregarFuncionarios
+End Sub
+
+
+-----------------
+#AddTarefa
+
+Private Sub Label1_Click()
+Unload Me
+
+End Sub
+
+Private Sub Label5_Click()
+InserirTarefa
+End Sub
+
+Private Sub cbbCampo_Change()
+    AtualizarResumo
+End Sub
+
+Private Sub cbbLogica_Change()
+    AtualizarResumo
+End Sub
+
+Private Sub cbbUnTemp_Change()
+    AtualizarResumo
+End Sub
+
+Private Sub txtResumo_Change()
+
+End Sub
+
+Private Sub txtValNum_Change()
+    AtualizarResumo
+End Sub
+
+Private Sub txtTexto_Change()
+    AtualizarResumo
+End Sub
+
+Private Sub Label5_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = True
+End Sub
+
+Private Sub Label5_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = False
+End Sub
+
+Private Sub UserForm_Activate()
+HideTitleBarAndBorder2 Me 'hide the titlebar and border
+MakeUserFormTransparent2 Me  'make certain color transparent
+End Sub
+
+Private Sub IcSBdiminuir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+Private Sub IcSBexpandir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+Private Sub txtSBsetaDOWN_Click()
+    Me.txtSB2add.Visible = True
+    Me.txtSB2gere.Visible = True
+    Me.txtSBsetaDOWN.Visible = False
+    Me.txtSBsetaUP.Visible = True
+    Me.txtSBbarrinha.Visible = True
+End Sub
+
+Private Sub txtSBsetaUP_Click()
+    Me.txtSB2add.Visible = False
+    Me.txtSB2gere.Visible = False
+    Me.txtSBsetaUP.Visible = False
+    Me.txtSBsetaDOWN.Visible = True
+    Me.txtSBbarrinha.Visible = False
+End Sub
+
+Private Sub UserForm_Click()
+    If lblSidebar.Width > 100 Then
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+
+Private Sub txtSB2Gere_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Gere_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = True
+End Sub
+
+Private Sub txtSB2Add_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Add_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = True
+End Sub
+
+Private Sub txtSBtarefas_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = False
+End Sub
+
+Private Sub txtSBtarefas_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereCli_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereCli_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereFunc_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereFunc_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = True
+
+End Sub
+
+Private Sub txtSBajuda_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = False
+End Sub
+
+Private Sub txtSBajuda_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = True
+End Sub
+
+Private Sub txtSBHist_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = False
+End Sub
+
+Private Sub txtSBHist_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = True
+End Sub
+
+Private Sub txtSBcrm_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = False
+End Sub
+
+Private Sub txtSBcrm_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = True
+End Sub
+
+Private Sub UserForm_Initialize()
+
+' Preencher a combobox cbbCampo com os valores de Data
+    With AddTarefa.cbbCampo
+        .Clear
+        .AddItem "Data Entrada"
+        .AddItem "Data Agendada"
+        .AddItem "Data Fechada"
+        .AddItem "Data Finalizada"
+        .AddItem "Data Negada"
+    End With
+
+    ' Preencher a combobox cbbLogica com as opções de lógica
+    With AddTarefa.cbbLogica
+        .Clear
+        .AddItem "Após"
+        .AddItem "Imediatamente"
+        .AddItem "Antes de"
+        .AddItem "No mesmo dia" ' Opção extra
+    End With
+    
+    ' Preencher a combobox cbbUnTemp com as unidades de tempo
+    With AddTarefa.cbbUnTemp
+        .Clear
+        .AddItem "minutos"
+        .AddItem "horas"
+        .AddItem "dias"
+        .AddItem "semanas"
+        .AddItem "meses"
+    End With
+    
+EfeitoDiminuir Me
+txtSBpicked.ZOrder (1)
+lblpicked.ZOrder (1)
+lblSidebar.ZOrder (1)
+
+End Sub
+
+-------------
+#AddTarefa Módulo
+
+Sub InserirTarefa()
+    ' Garante que a conexão esteja ativa
+    Call Conectar
+    If conn Is Nothing Then Exit Sub
+
+    ' Captura os valores dos campos do UserForm AddTarefa
+    Dim idTarefa As String, campo As String, logica As String, unTemp As String, valNum As String, texto As String
+    idTarefa = Trim(AddTarefa.txtIDTarefa.Value)
+    campo = Trim(AddTarefa.cbbCampo.Value)
+    logica = Trim(AddTarefa.cbbLogica.Value)
+    unTemp = Trim(AddTarefa.cbbUnTemp.Value)
+    valNum = Trim(AddTarefa.txtValNum.Value)
+    texto = Trim(AddTarefa.txtTexto.Value)
+
+    ' Verifica se os campos estão vazios
+    If campo = "" Or logica = "" Or unTemp = "" Or valNum = "" Or texto = "" Then
+        MsgBox "Preencha todos os campos antes de salvar!", vbExclamation
+        conn.Close
+        Set conn = Nothing
+        Exit Sub
+    End If
+
+    ' Monta o SQL de inserção ou atualização
+    Dim sql As String
+    If idTarefa = "" Then
+        ' Inserção de uma nova tarefa
+        sql = "INSERT INTO BD_Tarefas ([Status_Tarefa], [Campo_Data], [Lógica], [Valor_numérico], [Medida_Tempo], [Texto]) " & _
+              "VALUES ('Ativo', '" & campo & "', '" & logica & "', '" & valNum & "', '" & unTemp & "', '" & texto & "')"
+    Else
+        ' Atualização da tarefa existente
+        sql = "UPDATE BD_Tarefas SET " & _
+              "[Campo_Data] = '" & campo & "', " & _
+              "[Lógica] = '" & logica & "', " & _
+              "[Valor_numérico] = '" & valNum & "', " & _
+              "[Medida_Tempo] = '" & unTemp & "', " & _
+              "[Texto] = '" & texto & "' " & _
+              "WHERE ID_Tarefas = " & idTarefa
+    End If
+
+    ' Executa diretamente no objeto de conexão
+    On Error Resume Next
+    conn.Execute sql
+    If Err.Number <> 0 Then
+        MsgBox "Erro ao salvar os dados: " & Err.Description, vbCritical
+    Else
+        If idTarefa = "" Then
+            MsgBox "Tarefa cadastrada com sucesso!", vbInformation
+        Else
+            MsgBox "Tarefa atualizada com sucesso!", vbInformation
+        End If
+    End If
+    On Error GoTo 0
+
+    ' Fechar conexão
+    conn.Close
+    Set conn = Nothing
+    
+    ' Limpar campos do UserForm
+    With AddTarefa
+        .txtIDTarefa.Value = ""
+        .cbbCampo.Value = ""
+        .cbbLogica.Value = ""
+        .cbbUnTemp.Value = ""
+        .txtValNum.Value = ""
+        .txtTexto.Value = ""
+        .txtResumo.Value = "" ' Limpa o resumo também
+    End With
+
+    ' Atualizar a visualização do ListView no GereTarefas, se necessário
+    ' GereTarefas.CarregarTarefas ' <- Chame essa função no outro formulário
+
+    ' Fechar o formulário de edição
+End Sub
+
+
+Sub AtualizarResumo()
+    ' Captura os valores dos campos
+    Dim campo As String, logica As String, unTemp As String, valNum As String, texto As String
+    Dim resumo As String
+    
+    campo = Trim(AddTarefa.cbbCampo.Value)
+    logica = Trim(AddTarefa.cbbLogica.Value)
+    unTemp = Trim(AddTarefa.cbbUnTemp.Value)
+    valNum = Trim(AddTarefa.txtValNum.Value)
+    texto = Trim(AddTarefa.txtTexto.Value)
+    
+    ' Cria uma mensagem mais compreensível
+    If campo <> "" And logica <> "" And unTemp <> "" And valNum <> "" And texto <> "" Then
+        resumo = texto & " " & logica & " " & valNum & " " & unTemp & " da " & campo
+    Else
+        resumo = "Preencha todos os campos para ver o resumo."
+    End If
+    
+    ' Atualiza a TextBox de resumo
+    AddTarefa.txtResumo.Value = resumo
+End Sub
+
+-------------
+#BuscarCli Userform
+
+Private Sub Label1_Click()
+Unload Me
+End Sub
+
+Private Sub Label2_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label2.Font.Bold = True
+End Sub
+
+Private Sub Label2_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label2.Font.Bold = False
+End Sub
+
+Private Sub UserForm_Activate()
+HideTitleBarAndBorder4 Me 'hide the titlebar and border
+MakeUserFormTransparent4 Me  'make certain color transparent
+End Sub
+
+Private Sub UserForm_Initialize()
+    ' Preencher cbbNome com os nomes dos clientes do BD_Cliente
+    Dim rs As Object
+    Set rs = CreateObject("ADODB.Recordset")
+    
+    ' Conectar ao banco de dados e buscar os nomes dos clientes
+    Call Conectar
+    rs.Open "SELECT Nome FROM BD_Cliente", conn, 1, 3
+
+    ' Preencher a ComboBox cbbNome com os nomes dos clientes
+    While Not rs.EOF
+        cbbNome.AddItem rs.Fields("Nome").Value
+        rs.MoveNext
+    Wend
+    rs.Close
+    Set rs = Nothing
+End Sub
+
+
+Private Sub cbbNome_Change()
+    ' Captura o nome selecionado
+    Dim nomeCliente As String
+    nomeCliente = cbbNome.Value
+    
+    ' Busca o ID do cliente
+    Dim rs As Object
+    Set rs = conn.Execute("SELECT ID_Cliente FROM BD_Cliente WHERE Nome = '" & nomeCliente & "'")
+    
+    If Not rs.EOF Then
+        lblIDcli.Caption = rs.Fields("ID_Cliente").Value
+    Else
+        lblIDcli.Caption = ""
+    End If
+    rs.Close
+    Set rs = Nothing
+    
+    ' Preenche a ComboBox de Serviços (cbbServ) com os serviços desse cliente
+    PreencherComboBoxServicos
+End Sub
+
+Private Sub PreencherComboBoxServicos()
+    Dim clienteID As String
+    clienteID = lblIDcli.Caption
+    
+    ' Limpa a ComboBox de serviços
+    cbbServ.Clear
+    
+    ' Adiciona a opção "Novo serviço"
+    cbbServ.AddItem "Novo serviço"
+    
+    ' Preenche a ComboBox com os serviços do cliente
+    Dim rs As Object
+    Set rs = conn.Execute("SELECT ID_Serviço, Serviço FROM BD_Serviço WHERE ID_Cliente = " & clienteID)
+    
+    While Not rs.EOF
+        cbbServ.AddItem rs.Fields("Serviço").Value
+        rs.MoveNext
+    Wend
+    rs.Close
+    Set rs = Nothing
+End Sub
+
+Private Sub cbbServ_Change()
+    If cbbServ.Value = "Novo serviço" Then
+        ' Se a opção "Novo serviço" for selecionada, limpa a label
+        lblIDserv.Caption = ""
+    Else
+        ' Caso contrário, busca o ID do serviço correspondente
+        Dim rs As Object
+        Set rs = conn.Execute("SELECT ID_Serviço FROM BD_Serviço WHERE Serviço = '" & cbbServ.Value & "'")
+        
+        If Not rs.EOF Then
+            lblIDserv.Caption = rs.Fields("ID_Serviço").Value
+        Else
+            lblIDserv.Caption = ""
+        End If
+        rs.Close
+        Set rs = Nothing
+    End If
+End Sub
+
+Private Sub Label2_Click()
+    ' Pega o ID do cliente e do serviço selecionados
+    Dim idCliente As String, idServico As String
+    idCliente = lblIDcli.Caption
+    idServico = lblIDserv.Caption
+    
+    Cliente.txtIDServ.Value = idServico
+    
+    ' Verifica se o ID do cliente está correto
+    If idCliente <> "" Then
+        ' Buscar todos os dados do cliente em uma única consulta
+        Dim rsCliente As Object
+        Set rsCliente = BuscarDadosCliente(idCliente)
+        
+        
+        
+        If Not rsCliente.EOF Then
+            Cliente.txtNome.Value = rsCliente.Fields("Nome").Value
+            Cliente.txtTel.Value = rsCliente.Fields("Telefone").Value
+            Cliente.txtEnd.Value = rsCliente.Fields("Endereço").Value
+            Cliente.cbbTipo.Value = rsCliente.Fields("Tipo").Value
+        End If
+        rsCliente.Close
+        Set rsCliente = Nothing
+        
+        ' Buscar todos os dados do serviço em uma única consulta
+        If idServico <> "" And idServico <> "Novo serviço" Then
+            Dim rsServico As Object
+            Set rsServico = BuscarDadosServico(idServico)
+            
+            If Not rsServico.EOF Then
+                Cliente.txtServ.Value = rsServico.Fields("Serviço").Value
+                Cliente.cbbStatus.Value = rsServico.Fields("Status").Value
+                Cliente.txtValor.Value = rsServico.Fields("Valor").Value
+                Cliente.txtObs.Value = rsServico.Fields("Observação").Value
+                Cliente.txtOrc.Value = rsServico.Fields("Orçamento").Value
+                Cliente.txtEnt.Value = rsServico.Fields("Data_Entrada").Value
+                Cliente.txtAgend.Value = rsServico.Fields("Data_Agendada").Value
+
+            End If
+            rsServico.Close
+            Set rsServico = Nothing
+        Else
+            ' Se for "Novo serviço", deixa os campos de serviço vazios
+            Cliente.txtServ.Value = ""
+            Cliente.cbbStatus.Value = ""
+            Cliente.txtValor.Value = ""
+            Cliente.txtObs.Value = ""
+            Cliente.txtOrc.Value = ""
+            Cliente.txtEnt.Value = ""
+            Cliente.txtAgend.Value = ""
+        End If
+        
+        ' Buscar o funcionário associado
+        Cliente.cbbFunc.Value = BuscarFuncionarioCliente(idCliente, idServico)
+        
+        ' Exibe o UserForm Cliente e fecha o BuscarCli
+
+        Me.Hide
+    Else
+        MsgBox "Selecione um cliente válido!", vbExclamation
+    End If
+End Sub
+
+
+---------------
+#BuscarCLi Módulo
+
+Function BuscarDadosCliente(idCliente As String) As Object
+    Dim rs As Object
+    Set rs = CreateObject("ADODB.Recordset")
+    
+    ' Conectar ao banco de dados
+    Call Conectar
+    ' Consultar todos os dados de uma vez para o cliente
+    rs.Open "SELECT Nome, Telefone, Endereço, Tipo FROM BD_Cliente WHERE ID_Cliente = " & idCliente, conn, 1, 3
+    
+    Set BuscarDadosCliente = rs
+End Function
+
+Function BuscarFuncionarioCliente(idCliente As String, idServico As String) As String
+    Dim rs As Object
+    Set rs = CreateObject("ADODB.Recordset")
+    
+    ' Conectar ao banco de dados
+    Call Conectar
+    
+    ' Verifica se idServico é válido
+    If idServico = "" Or idServico = "Novo serviço" Then
+        BuscarFuncionarioCliente = ""
+        Exit Function
+    End If
+    
+    ' Primeiro, buscar o ID do funcionário associado ao serviço
+    Dim idFunc As Variant
+    rs.Open "SELECT ID_Func FROM BD_Serviço WHERE ID_Serviço = '" & idServico & "'", conn, 1, 3
+    
+    If Not rs.EOF Then
+        idFunc = rs.Fields("ID_Func").Value
+    Else
+        BuscarFuncionarioCliente = "" ' Se não encontrar, retorna vazio
+        rs.Close
+        Set rs = Nothing
+        Exit Function
+    End If
+    rs.Close
+    
+    ' Verifica se o ID do funcionário é válido
+    If IsNull(idFunc) Or idFunc = "" Then
+        BuscarFuncionarioCliente = ""
+        Exit Function
+    End If
+    
+    ' Agora, buscar o nome do funcionário na tabela BD_Funcionários
+    rs.Open "SELECT Nome FROM BD_Funcionários WHERE ID_Func = '" & idFunc & "'", conn, 1, 3
+    
+    If Not rs.EOF Then
+        BuscarFuncionarioCliente = rs.Fields("Nome").Value
+    Else
+        BuscarFuncionarioCliente = "" ' Retorna vazio se não encontrar o funcionário
+    End If
+    
+    rs.Close
+    Set rs = Nothing
+End Function
+
+
+Function BuscarDadosServico(idServico As String) As Object
+    Dim rs As Object
+    Set rs = CreateObject("ADODB.Recordset")
+    
+    ' Conectar ao banco de dados
+    Call Conectar
+    
+    ' Buscar todos os detalhes do serviço e a Data_Agendada da BD_RegistroStatus
+    rs.Open "SELECT S.Serviço, S.Status, S.Valor, S.Observação, S.Orçamento, " & _
+            "S.Data_Entrada, R.Data_Agendada " & _
+            "FROM BD_Serviço S " & _
+            "LEFT JOIN BD_RegistroStatus R ON S.ID_Serviço = R.ID_Serviço " & _
+            "WHERE S.ID_Serviço = '" & idServico & "'", conn, 1, 3
+
+    Set BuscarDadosServico = rs
+End Function
+
+
+-------------
+#Cliente Userform
+
+Private Sub Label1_Click()
+Unload Me
+End Sub
+
+Private Sub Label5_Click()
+    ' Executa o processo de cadastro
+    CriarServico
+End Sub
+
+
+Private Sub Label5_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = True
+End Sub
+
+Private Sub Label5_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = True
+End Sub
+
+Private Sub Label6_Click()
+AdicionarOrcamento
+End Sub
+
+Private Sub Label6_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label6.Font.Bold = True
+End Sub
+
+Private Sub Label6_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label6.Font.Bold = False
+End Sub
+
+Private Sub Label7_Click()
+    ' Instancia o UserForm se necessário
+    Dim f As New BuscarCli
+    f.Show
+End Sub
+
+Private Sub Label7_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = True
+End Sub
+
+Private Sub Label7_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = False
+End Sub
+
+Private Sub Label8_Click()
+AbrirOrcamento
+End Sub
+
+Private Sub Label8_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label8.Font.Bold = True
+End Sub
+
+Private Sub Label8_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label8.Font.Bold = False
+End Sub
+
+Private Sub txtOrc_Change()
+
+End Sub
+
+Private Sub UserForm_Activate()
+HideTitleBarAndBorder3 Me 'hide the titlebar and border
+MakeUserFormTransparent3 Me  'make certain color transparent
+End Sub
+
+Private Sub IcSBdiminuir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+Private Sub IcSBexpandir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+    
+    With Me
+    .txtNome.ZOrder (1)
+    .txtEnd.ZOrder (1)
+    .txtEnt.ZOrder (1)
+    .txtObs.ZOrder (1)
+    .cbbStatus.ZOrder (1)
+    .cbbTipo.ZOrder (1)
+    End With
+    
+End Sub
+
+Private Sub txtSBsetaDOWN_Click()
+    Me.txtSB2add.Visible = True
+    Me.txtSB2gere.Visible = True
+    Me.txtSBsetaDOWN.Visible = False
+    Me.txtSBsetaUP.Visible = True
+    Me.txtSBbarrinha.Visible = True
+End Sub
+
+Private Sub txtSBsetaUP_Click()
+    Me.txtSB2add.Visible = False
+    Me.txtSB2gere.Visible = False
+    Me.txtSBsetaUP.Visible = False
+    Me.txtSBsetaDOWN.Visible = True
+    Me.txtSBbarrinha.Visible = False
+End Sub
+
+Private Sub UserForm_Click()
+    If lblSidebar.Width > 100 Then
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+
+Private Sub txtSB2Gere_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Gere_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = True
+End Sub
+
+Private Sub txtSB2Add_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Add_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = True
+End Sub
+
+Private Sub txtSBtarefas_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = False
+End Sub
+
+Private Sub txtSBtarefas_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereCli_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereCli_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereFunc_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereFunc_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = True
+
+End Sub
+
+Private Sub txtSBajuda_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = False
+End Sub
+
+Private Sub txtSBajuda_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = True
+End Sub
+
+Private Sub txtSBHist_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = False
+End Sub
+
+Private Sub txtSBHist_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = True
+End Sub
+
+Private Sub txtSBcrm_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = False
+End Sub
+
+Private Sub txtSBcrm_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = True
+End Sub
+
+Private Sub UserForm_Initialize()
+
+EfeitoDiminuir Me
+txtSBpicked.ZOrder (1)
+lblpicked.ZOrder (1)
+lblSidebar.ZOrder (1)
+
+' Conectar ao banco de dados
+    Call Conectar
+    If conn Is Nothing Then Exit Sub
+    
+    ' 1?? Carregar os funcionários na cbbFunc
+    Dim rs As Object
+    Set rs = conn.Execute("SELECT Nome FROM BD_Funcionários")
+    
+    cbbFunc.Clear
+    Do While Not rs.EOF
+        cbbFunc.AddItem rs.Fields(0).Value
+        rs.MoveNext
+    Loop
+    rs.Close
+    Set rs = Nothing
+    
+    ' 2?? Carregar os tipos no txtTipo
+    cbbTipo.Clear
+    cbbTipo.AddItem "Residencial"
+    cbbTipo.AddItem "Comercial"
+    
+    ' 3?? Carregar os status no cbbStatus
+    cbbStatus.Clear
+    cbbStatus.AddItem "Primeiro Contato"
+    cbbStatus.AddItem "Em andamento"
+    cbbStatus.AddItem "Fechado"
+    cbbStatus.AddItem "Finalizado"
+    cbbStatus.AddItem "Negado"
+    
+    ' Fechar conexão
+    conn.Close
+    Set conn = Nothing
+End Sub
+
+----------------
+#Cliente Módulo
+
+Function ObterIDCliente(ByVal telefone As String) As Variant
+    ' Garante que a conexão esteja ativa
+    Call Conectar
+    If conn Is Nothing Then Exit Function
+
+    Dim rs As Object
+    Dim sql As String
+    Dim idCliente As Variant
+
+    ' Busca o cliente pelo telefone
+    sql = "SELECT ID_Cliente FROM BD_Cliente WHERE Telefone = '" & telefone & "'"
+    Set rs = conn.Execute(sql)
+
+    ' Se encontrar, retorna o ID do cliente
+    If Not rs.EOF Then
+        idCliente = rs.Fields("ID_Cliente").Value
+    Else
+        idCliente = Null ' Cliente não encontrado
+    End If
+
+    rs.Close
+    Set rs = Nothing
+    conn.Close
+    Set conn = Nothing
+
+    ObterIDCliente = idCliente
+End Function
+
+Function CriarCliente(ByVal nome As String, ByVal telefone As String, ByVal endereco As String, ByVal tipo As String) As Variant
+    ' Garante que a conexão esteja ativa
+    Call Conectar
+    If conn Is Nothing Then Exit Function
+
+    Dim sql As String
+    Dim rs As Object
+    Dim idCliente As Variant
+
+    ' Insere um novo cliente na BD_Cliente
+    sql = "INSERT INTO BD_Cliente (Nome, Telefone, Endereço, Tipo) VALUES " & _
+          "('" & nome & "', '" & telefone & "', '" & endereco & "', '" & tipo & "')"
+
+    conn.Execute sql
+
+    ' Obtém o ID do cliente recém-criado
+    sql = "SELECT @@IDENTITY AS ID_Cliente"
+    Set rs = conn.Execute(sql)
+
+    If Not rs.EOF Then
+        idCliente = rs.Fields("ID_Cliente").Value
+    End If
+
+    rs.Close
+    Set rs = Nothing
+    conn.Close
+    Set conn = Nothing
+
+    CriarCliente = idCliente
+End Function
+
+Function ObterIDFuncionario(ByVal nomeFunc As String) As Variant
+    ' Garante que a conexão esteja ativa
+    Call Conectar
+    If conn Is Nothing Then Exit Function
+
+    Dim rs As Object
+    Dim sql As String
+    Dim idFunc As Variant
+
+    ' Busca o ID do funcionário pelo nome
+    sql = "SELECT ID_Func FROM BD_Funcionários WHERE Nome = '" & nomeFunc & "'"
+    Set rs = conn.Execute(sql)
+
+    If Not rs.EOF Then
+        idFunc = rs.Fields("ID_Func").Value
+    Else
+        idFunc = Null ' Funcionário não encontrado
+    End If
+
+    rs.Close
+    Set rs = Nothing
+    conn.Close
+    Set conn = Nothing
+
+    ObterIDFuncionario = idFunc
+End Function
+
+Sub CriarServico()
+    ' Captura os valores dos campos do UserForm Cliente
+    Dim nome As String, telefone As String, endereco As String, tipo As String
+    Dim funcNome As String, servico As String, dataEntrada As String, dataAgendada As String, status As String
+    Dim valor As String, observacao As String, orcamento As String
+    Dim idCliente As Variant, idFunc As Variant, idServico As Variant
+
+    nome = Trim(Cliente.txtNome.Value)
+    telefone = Trim(Cliente.txtTel.Value)
+    endereco = Trim(Cliente.txtEnd.Value)
+    tipo = Trim(Cliente.cbbTipo.Value)
+    funcNome = Trim(Cliente.cbbFunc.Value)
+    servico = Trim(Cliente.txtServ.Value)
+    dataEntrada = Format(Cliente.txtEnt.Value, "yyyy-mm-dd")
+    dataAgendada = Format(Cliente.txtAgend.Value, "yyyy-mm-dd")
+    status = Trim(Cliente.cbbStatus.Value)
+    valor = Trim(Cliente.txtValor.Value)
+    observacao = Trim(Cliente.txtObs.Value)
+    orcamento = Trim(Cliente.txtOrc.Value)
+    idServico = Trim(Cliente.txtIDServ.Value)
+    prioridade = 1
+
+    ' Verifica se os campos obrigatórios estão preenchidos
+    If telefone = "" Or servico = "" Or dataEntrada = "" Or status = "" Then
+        MsgBox "Preencha todos os campos obrigatórios!", vbExclamation
+        Exit Sub
+    End If
+
+    ' Verifica se o cliente já existe
+    idCliente = ObterIDCliente(telefone)
+    If IsNull(idCliente) Then
+        ' Se não existir, cria um novo cliente
+        idCliente = CriarCliente(nome, telefone, endereco, tipo)
+    End If
+
+    ' Verifica se conseguiu obter um ID de cliente válido
+    If IsNull(idCliente) Then
+        MsgBox "Erro ao obter ID do cliente!", vbCritical
+        Exit Sub
+    End If
+
+    ' Obtém o ID do funcionário
+    idFunc = ObterIDFuncionario(funcNome)
+    If IsNull(idFunc) Then
+        MsgBox "Funcionário não encontrado!", vbCritical
+        Exit Sub
+    End If
+
+    ' Garante que a conexão esteja ativa
+    Call Conectar
+    If conn Is Nothing Then Exit Sub
+
+    Dim sql As String
+
+    ' Se ID do serviço está preenchido, atualiza o serviço existente
+    If idServico <> "" Then
+        sql = "UPDATE BD_Serviço SET " & _
+              "ID_Cliente = " & idCliente & ", " & _
+              "ID_Func = " & idFunc & ", " & _
+              "Serviço = '" & servico & "', " & _
+              "Data_Entrada = '" & dataEntrada & "', " & _
+              "Status = '" & status & "', " & _
+              "Valor = NULLIF('" & valor & "', ''), " & _
+              "Observação = NULLIF('" & observacao & "', ''), " & _
+              "Orçamento = NULLIF('" & orcamento & "', '') " & _
+              "WHERE ID_Serviço = " & idServico
+
+        conn.Execute sql
+
+        ' Atualiza Data_Agendada na BD_RegistroStatus
+        sql = "UPDATE BD_RegistroStatus SET Data_Agendada = '" & dataAgendada & "' WHERE ID_Serviço = " & idServico
+        conn.Execute sql
+
+        MsgBox "Serviço atualizado com sucesso!", vbInformation
+
+    Else ' Se ID do serviço estiver vazio, cria um novo serviço
+        sql = "INSERT INTO BD_Serviço (ID_Cliente, ID_Func, Serviço, Data_Entrada, Status, Valor, Observação, Orçamento) " & _
+              "VALUES (" & idCliente & ", " & idFunc & ", '" & servico & "', '" & dataEntrada & "', '" & status & "', " & _
+              "NULLIF('" & valor & "', ''), NULLIF('" & observacao & "', ''), NULLIF('" & orcamento & "', ''),NULLIF('" & prioridade & "', ''))"
+
+        ' Executa a inserção
+        conn.Execute sql
+
+        ' Obtém o ID do serviço recém-criado
+        sql = "SELECT @@IDENTITY AS ID_Serviço"
+        Dim rs As Object
+        Set rs = conn.Execute(sql)
+
+        If Not rs.EOF Then
+            idServico = rs.Fields("ID_Serviço").Value
+        End If
+        rs.Close
+        Set rs = Nothing
+
+        ' Verifica se conseguiu obter um ID de serviço válido
+        If IsNull(idServico) Then
+            MsgBox "Erro ao obter ID do serviço!", vbCritical
+            conn.Close
+            Set conn = Nothing
+            Exit Sub
+        End If
+
+        ' Insere o ID_Serviço e Data_Agendada na tabela BD_RegistroStatus
+        sql = "INSERT INTO BD_RegistroStatus (ID_Serviço, Data_Agendada) VALUES (" & idServico & ", '" & dataAgendada & "')"
+        conn.Execute sql
+
+        MsgBox "Serviço cadastrado com sucesso!", vbInformation
+    End If
+
+    ' Fecha conexão
+    conn.Close
+    Set conn = Nothing
+
+    ' Limpar campos do UserForm
+    With Cliente
+        .txtIDServ.Value = ""
+        .txtNome.Value = ""
+        .txtTel.Value = ""
+        .txtEnd.Value = ""
+        .cbbTipo.Value = ""
+        .cbbFunc.Value = ""
+        .txtServ.Value = ""
+        .txtEnt.Value = ""
+        .txtAgend.Value = ""
+        .cbbStatus.Value = ""
+        .txtValor.Value = ""
+        .txtObs.Value = ""
+        .txtOrc.Value = ""
+    End With
+End Sub
+
+
+' Função para realizar o upload do arquivo do orçamento e retornar o link
+Function UploadOrcamento() As String
+    Dim objHTTP As Object
+    Dim objStream As Object
+    Dim strURL As String
+    Dim strFilePath As String
+    Dim fd As FileDialog
+    Dim fileName As String
+
+    ' Abrir janela para selecionar o arquivo
+    Set fd = Application.FileDialog(msoFileDialogFilePicker)
+    With fd
+        .Title = "Selecione um arquivo para upload"
+        .AllowMultiSelect = False
+        .Filters.Clear
+        .Filters.Add "Todos os arquivos", "*.*"
+        
+        ' Se o usuário selecionar um arquivo
+        If .Show = -1 Then
+            strFilePath = .SelectedItems(1)
+        Else
+            MsgBox "Nenhum arquivo selecionado!", vbExclamation
+            UploadOrcamento = ""
+            Exit Function
+        End If
+    End With
+    
+    ' Pega o nome do arquivo
+    fileName = Dir(strFilePath)
+
+    ' Corrige o nome do arquivo para URL (encode de caracteres especiais)
+    fileName = URLEncode(fileName)
+
+    ' Corrige a URL de upload (só coloquei uma URL genérica, ajuste conforme necessário)
+    strURL = "https://armazenando.blob.core.windows.net/condenovo/" & fileName & "?sp=racwdl&st=2025-02-15T20:44:51Z&se=2027-02-16T04:44:51Z&sv=2022-11-02&sr=c&sig=oEHVjCeBV6pPf%2BOAHruHzJtqI4UxZ1dOzrax1XcYhgs%3D"
+
+    ' Criar e configurar o Stream para ler o arquivo
+    Set objStream = CreateObject("ADODB.Stream")
+    objStream.Type = 1 ' Tipo binário
+    objStream.Open
+    objStream.LoadFromFile strFilePath
+
+    ' Criar o objeto HTTP
+    Set objHTTP = CreateObject("MSXML2.XMLHTTP")
+    objHTTP.Open "PUT", strURL, False
+    objHTTP.setRequestHeader "x-ms-blob-type", "BlockBlob"
+    objHTTP.Send objStream.Read
+
+    ' Verificar resposta do servidor
+    If objHTTP.status = 201 Then
+        MsgBox "Upload realizado com sucesso!", vbInformation
+        UploadOrcamento = strURL ' Retorna o link do arquivo
+    Else
+        MsgBox "Erro no upload: " & objHTTP.status & " - " & objHTTP.responseText, vbCritical
+        UploadOrcamento = "" ' Retorna vazio em caso de erro
+    End If
+
+    ' Limpeza
+    objStream.Close
+    Set objStream = Nothing
+    Set objHTTP = Nothing
+    Set fd = Nothing
+End Function
+
+' Função para codificar caracteres especiais na URL
+Function URLEncode(str As String) As String
+    Dim i As Long
+    Dim strResult As String
+    Dim char As String
+    Dim intCode As Integer
+
+    strResult = ""
+    For i = 1 To Len(str)
+        char = Mid(str, i, 1)
+        intCode = Asc(char)
+        If (intCode >= 48 And intCode <= 57) Or (intCode >= 65 And intCode <= 90) Or (intCode >= 97 And intCode <= 122) Then
+            strResult = strResult & char
+        Else
+            strResult = strResult & "%" & Right("00" & Hex(intCode), 2)
+        End If
+    Next i
+
+    URLEncode = strResult
+End Function
+
+' Função que será chamada no evento de clique do botão
+Sub AdicionarOrcamento()
+    ' Chama a função de upload e pega o link retornado
+    Dim linkOrcamento As String
+    linkOrcamento = UploadOrcamento()
+
+    ' Se o upload foi bem-sucedido e o link foi gerado, adiciona o link no txtOrc
+    If linkOrcamento <> "" Then
+        Cliente.txtOrc.Value = linkOrcamento ' Atribui o link ao campo txtOrc
+    End If
+End Sub
+
+Public Sub AbrirOrcamento()
+    Dim url As String
+    Dim destino As String
+    Dim http As Object
+    Dim stream As Object
+    
+    ' Obtém o link do PDF a partir do UserForm Cliente
+    url = Cliente.txtOrc.Value
+    If url = "" Then
+        MsgBox "Nenhum link de orçamento foi encontrado.", vbExclamation, "Aviso"
+        Exit Sub
+    End If
+    
+    ' Define o caminho onde o PDF será salvo (pasta temporária)
+    destino = Environ("TEMP") & "\Orcamento.pdf"
+    
+    ' Baixa o arquivo PDF
+    Set http = CreateObject("MSXML2.XMLHTTP")
+    http.Open "GET", url, False
+    http.Send
+    
+    If http.status = 200 Then
+        Set stream = CreateObject("ADODB.Stream")
+        stream.Type = 1 ' binário
+        stream.Open
+        stream.Write http.responseBody
+        stream.SaveToFile destino, 2 ' Sobrescreve se já existir
+        stream.Close
+        Set stream = Nothing
+    Else
+        MsgBox "Falha ao baixar o orçamento.", vbCritical, "Erro"
+        Exit Sub
+    End If
+    
+    ' Preenche os campos do UserForm Visualizar
+    With Visualizar
+        .lblNome.Caption = Cliente.txtNome.Value
+        .lblIDserv.Caption = Cliente.txtIDServ.Value
+        .txtOrc.Value = destino ' Caminho do PDF baixado
+        .WebBrowser1.Navigate destino ' Abre no WebBrowser
+        .Show
+    End With
+    
+    ' Limpeza
+    Set http = Nothing
+End Sub
+
+
+-----------
+CRM userform
+
+' Variável global para armazenar o item anteriormente selecionado
+Dim itemAnterior As Object
+
+Private Sub Label11_Click()
+FiltrarPorFuncionario2
+End Sub
+
+Private Sub Label11_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label11.Font.Bold = True
+End Sub
+
+Private Sub Label11_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label11.Font.Bold = False
+End Sub
+
+Private Sub lvwPriCon_DblClick()
+    ' Verifica se há um item selecionado no ListView
+    If Not Me.lvwPriCon.SelectedItem Is Nothing Then
+        Call AtualizarPrioridade(Me.lvwPriCon.SelectedItem)
+    End If
+End Sub
+
+Private Sub lvwAnda_DblClick()
+    ' Verifica se há um item selecionado no ListView
+    If Not Me.lvwAnda.SelectedItem Is Nothing Then
+        Call AtualizarPrioridade(Me.lvwAnda.SelectedItem)
+    End If
+End Sub
+
+Private Sub lvwFec_DblClick()
+    ' Verifica se há um item selecionado no ListView
+    If Not Me.lvwFec.SelectedItem Is Nothing Then
+        Call AtualizarPrioridade(Me.lvwFec.SelectedItem)
+    End If
+End Sub
+
+Private Sub lvwFin_DblClick()
+    ' Verifica se há um item selecionado no ListView
+    If Not Me.lvwFin.SelectedItem Is Nothing Then
+        Call AtualizarPrioridade(Me.lvwFin.SelectedItem)
+    End If
+End Sub
+
+Private Sub Label1_Click()
+Unload Me
+End Sub
+
+Private Sub Label10_Click()
+AbrirEditarCliente
+End Sub
+
+Private Sub Label10_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label10.Font.Bold = True
+End Sub
+
+Private Sub Label10_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label10.Font.Bold = False
+End Sub
+
+Private Sub Label8_Click()
+Call AlterarStatusListView(Me.lvwPriCon, Me.cbbStatus, conn, Me.lblIDFunc)
+cbbStatus.Text = ""
+End Sub
+
+Private Sub Label8_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label8.Font.Bold = True
+End Sub
+
+Private Sub Label8_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label8.Font.Bold = False
+End Sub
+
+Private Sub Label9_Click()
+AbrirOrcamento2
+End Sub
+
+Private Sub Label9_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label9.Font.Bold = True
+End Sub
+
+Private Sub Label9_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label9.Font.Bold = False
+End Sub
+
+Private Sub lvwAnda_Click()
+    ' Chama o evento para atualizar o ID
+    Call lvw_Click(lvwAnda, lblIDFunc)
+
+    ' Restaurar a cor do item anterior
+    If Not itemAnterior Is Nothing Then
+        ' Restaura a cor da primeira coluna do item anterior
+        itemAnterior.ForeColor = RGB(0, 0, 0) ' Preto
+        itemAnterior.Bold = False ' Retirar negrito
+    End If
+
+    ' Define a nova cor do item selecionado
+    Dim itemSelecionado As ListItem
+    Set itemSelecionado = lvwAnda.SelectedItem
+    
+    ' Altera a cor da primeira coluna
+    itemSelecionado.ForeColor = RGB(0, 176, 80) ' Verde
+    itemSelecionado.Bold = True ' Negrito para a primeira coluna
+
+    ' Atualiza a variável global para referência futura
+    Set itemAnterior = itemSelecionado
+End Sub
+
+Private Sub lvwFec_Click()
+    ' Chama o evento para atualizar o ID
+    Call lvw_Click(lvwFec, lblIDFunc)
+
+    ' Restaurar a cor do item anterior
+    If Not itemAnterior Is Nothing Then
+        ' Restaura a cor da primeira coluna do item anterior
+        itemAnterior.ForeColor = RGB(0, 0, 0) ' Preto
+        itemAnterior.Bold = False ' Retirar negrito
+    End If
+
+    ' Define a nova cor do item selecionado
+    Dim itemSelecionado As ListItem
+    Set itemSelecionado = lvwFec.SelectedItem
+    
+    ' Altera a cor da primeira coluna
+    itemSelecionado.ForeColor = RGB(0, 176, 80) ' Verde
+    itemSelecionado.Bold = True ' Negrito para a primeira coluna
+
+    ' Atualiza a variável global para referência futura
+    Set itemAnterior = itemSelecionado
+End Sub
+
+Private Sub lvwFin_BeforeLabelEdit(Cancel As Integer)
+
+End Sub
+
+Private Sub lvwFin_Click()
+    ' Chama o evento para atualizar o ID
+    Call lvw_Click(lvwFin, lblIDFunc)
+
+    ' Restaurar a cor do item anterior
+    If Not itemAnterior Is Nothing Then
+        ' Restaura a cor da primeira coluna do item anterior
+        itemAnterior.ForeColor = RGB(0, 0, 0) ' Preto
+        itemAnterior.Bold = False ' Retirar negrito
+    End If
+
+    ' Define a nova cor do item selecionado
+    Dim itemSelecionado As ListItem
+    Set itemSelecionado = lvwFin.SelectedItem
+    
+    ' Altera a cor da primeira coluna
+    itemSelecionado.ForeColor = RGB(0, 176, 80) ' Verde
+    itemSelecionado.Bold = True ' Negrito para a primeira coluna
+
+    ' Atualiza a variável global para referência futura
+    Set itemAnterior = itemSelecionado
+End Sub
+
+Private Sub lvwPriCon_BeforeLabelEdit(Cancel As Integer)
+
+End Sub
+
+Private Sub lvwPriCon_Click()
+    ' Chama o evento para atualizar o ID
+    Call lvw_Click(lvwPriCon, lblIDFunc)
+
+    ' Restaurar a cor do item anterior
+    If Not itemAnterior Is Nothing Then
+        ' Restaura a cor da primeira coluna do item anterior
+        itemAnterior.ForeColor = RGB(0, 0, 0) ' Preto
+        itemAnterior.Bold = False ' Retirar negrito
+    End If
+
+    ' Define a nova cor do item selecionado
+    Dim itemSelecionado As ListItem
+    Set itemSelecionado = lvwPriCon.SelectedItem
+    
+    ' Altera a cor da primeira coluna
+    itemSelecionado.ForeColor = RGB(0, 176, 80) ' Verde
+    itemSelecionado.Bold = True ' Negrito para a primeira coluna
+
+    ' Atualiza a variável global para referência futura
+    Set itemAnterior = itemSelecionado
+End Sub
+
+
+
+
+
+Private Sub UserForm_Activate()
+HideTitleBarAndBorder8 Me 'hide the titlebar and border
+MakeUserFormTransparent8 Me  'make certain color transparent
+End Sub
+
+Private Sub IcSBdiminuir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+Private Sub IcSBexpandir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+Private Sub txtSBsetaDOWN_Click()
+    Me.txtSB2add.Visible = True
+    Me.txtSB2gere.Visible = True
+    Me.txtSBsetaDOWN.Visible = False
+    Me.txtSBsetaUP.Visible = True
+    Me.txtSBbarrinha.Visible = True
+End Sub
+
+Private Sub txtSBsetaUP_Click()
+    Me.txtSB2add.Visible = False
+    Me.txtSB2gere.Visible = False
+    Me.txtSBsetaUP.Visible = False
+    Me.txtSBsetaDOWN.Visible = True
+    Me.txtSBbarrinha.Visible = False
+End Sub
+
+Private Sub UserForm_Click()
+    If lblSidebar.Width > 100 Then
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+
+Private Sub txtSB2Gere_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Gere_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = True
+End Sub
+
+Private Sub txtSB2Add_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Add_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = True
+End Sub
+
+Private Sub txtSBtarefas_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = False
+End Sub
+
+Private Sub txtSBtarefas_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereCli_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereCli_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereFunc_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereFunc_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = True
+
+End Sub
+
+Private Sub txtSBajuda_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = False
+End Sub
+
+Private Sub txtSBajuda_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = True
+End Sub
+
+Private Sub txtSBHist_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = False
+End Sub
+
+Private Sub txtSBHist_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = True
+End Sub
+
+Private Sub txtSBcrm_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = False
+End Sub
+
+Private Sub txtSBcrm_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = True
+End Sub
+
+Private Sub UserForm_Initialize()
+
+    ' Adiciona a imagem ao ImageList
+    Me.ImageList1.ListImages.Clear ' Limpa o ImageList antes de adicionar uma nova imagem
+    With Me.ImageList1.ListImages
+        .Add , , Me.Label12.Picture  ' Adiciona a imagem da Label12
+        .Add , , Me.Label13.Picture
+        .Add , , Me.Label14.Picture
+        .Add , , Me.Label15.Picture
+    End With
+
+      ' Configura o ListView para usar o ImageList
+    With Me.lvwPriCon
+        .SmallIcons = Me.ImageList1 ' Defina o ImageList para SmallIcons
+        .ColumnHeaders.Clear
+        .ColumnHeaders.Add , , "Id", 40
+        .ColumnHeaders.Add , , "Nome", 80
+        .ColumnHeaders.Add , , "ic", 20
+    End With
+    
+    With Me.lvwAnda
+        .SmallIcons = Me.ImageList1
+        .ColumnHeaders.Clear
+        .ColumnHeaders.Add , , "Id", 40
+        .ColumnHeaders.Add , , "Nome", 100
+        .ColumnHeaders.Add , , "ic", 20
+    End With
+    
+    With Me.lvwFec
+        .SmallIcons = Me.ImageList1
+        .ColumnHeaders.Clear
+        .ColumnHeaders.Add , , "Id", 40
+        .ColumnHeaders.Add , , "Nome", 100
+        .ColumnHeaders.Add , , "ic", 20
+    End With
+    
+    With Me.lvwFin
+        .SmallIcons = Me.ImageList1
+        .ColumnHeaders.Clear
+        .ColumnHeaders.Add , , "Id", 40
+        .ColumnHeaders.Add , , "Nome", 100
+        .ColumnHeaders.Add , , "ic", 20
+    End With
+    
+' Preencher a combobox cbbCampo com os valores de Data
+    With CRM.cbbStatus
+        .Clear
+        .AddItem "Primeiro Contato"
+        .AddItem "Em andamento"
+        .AddItem "Fechado"
+        .AddItem "Finalizado"
+        .AddItem "Negado"
+    End With
+    
+    EfeitoDiminuir Me
+    txtSBpicked.ZOrder (1)
+    lblpicked.ZOrder (1)
+    lblSidebar.ZOrder (1)
+
+    CarregarFunc2
+    CarregarCRM
+    
+    
+End Sub
+
+Public Sub AdicionarItemNoListView()
+    Dim item As ListItem
+    Dim indiceImagem As Integer
+
+    ' Obtém o índice da imagem (geralmente será 1, se for a primeira imagem)
+    indiceImagem = 1 ' O índice é 1 porque você está adicionando a primeira imagem
+
+    ' Adiciona um item ao ListView
+    Set item = Me.lvwPriCon.ListItems.Add(, , "ID_001")  ' ID do item
+    item.SubItems(1) = "Nome do Cliente"  ' Nome do cliente
+    item.Icon = indiceImagem  ' Associa a imagem ao item
+End Sub
+
+Private Sub AtualizarPrioridade(item As ListItem)
+    Dim sql As String
+    Dim idServico As String
+    Dim prioridade As Integer
+    Dim novaPrioridade As Integer
+    Dim rs As Object
+    
+    ' Garante que a conexão está ativa
+    If conn Is Nothing Then
+        Call Conectar
+    End If
+
+    ' Verifica novamente se a conexão foi estabelecida
+    If conn Is Nothing Then
+        MsgBox "Erro: conexão não foi estabelecida.", vbCritical
+        Exit Sub
+    End If
+
+    ' Verifica se a conexão está ativa
+    If conn.State <> 1 Then
+        MsgBox "Erro: conexão com o banco de dados não está ativa.", vbCritical
+        Exit Sub
+    End If
+
+    ' Verifica se o item é válido
+    If item Is Nothing Then
+        MsgBox "Erro: Nenhum item selecionado.", vbCritical
+        Exit Sub
+    End If
+
+    ' Obtém o ID_Serviço do item selecionado
+    idServico = item.Text
+
+    ' Verifica se o ID é válido
+    If Trim(idServico) = "" Then
+        MsgBox "Erro: ID_Serviço inválido.", vbCritical
+        Exit Sub
+    End If
+
+    ' Consulta para buscar o valor atual da Prioridade
+    sql = "SELECT Prioridade FROM BD_Serviço WHERE ID_Serviço = " & idServico
+    Set rs = conn.Execute(sql)
+
+    ' Verifica se retornou um resultado
+    If rs.EOF Then
+        MsgBox "Erro: ID_Serviço não encontrado no banco de dados.", vbCritical
+        rs.Close
+        Exit Sub
+    End If
+
+    ' Obtém a prioridade
+    prioridade = rs.Fields("Prioridade").Value
+    rs.Close ' Fecha o recordset
+
+    ' Define a nova prioridade (circular: 1 -> 2 -> 3 -> 1)
+    Select Case prioridade
+        Case 1
+            novaPrioridade = 2
+        Case 2
+            novaPrioridade = 3
+        Case 3
+            novaPrioridade = 1
+        Case Else
+            novaPrioridade = 1
+    End Select
+
+    ' Atualiza o valor da Prioridade no banco de dados
+    sql = "UPDATE BD_Serviço SET Prioridade = " & novaPrioridade & _
+          " WHERE ID_Serviço = " & idServico
+    conn.Execute sql
+
+    ' Atualiza o ícone no ListView para refletir a nova prioridade
+    AtualizarIconeListView item, novaPrioridade
+
+    'MsgBox "Prioridade atualizada com sucesso!", vbInformation
+End Sub
+
+
+Private Sub AtualizarIconeListView(item As ListItem, prioridade As Integer)
+    Dim iconIndex As Integer
+    
+    ' Define o ícone com base na prioridade
+    Select Case prioridade
+        Case 1: iconIndex = 1
+        Case 2: iconIndex = 2
+        Case 3: iconIndex = 3
+    End Select
+
+    ' Verifica se há pelo menos 2 subitens antes de modificar o segundo
+    If item.ListSubItems.Count >= 2 Then
+        item.ListSubItems.Remove 2 ' Remove o subitem 2 antigo
+    End If
+    
+    ' Adiciona o subitem 2 novamente com o novo ícone
+    item.ListSubItems.Add 2, , , iconIndex
+
+End Sub
+
+
+
+-------------
+#CRM Módulo
+
+' Variável global para armazenar o item anteriormente selecionado
+Dim itemAnterior As Object
+
+Sub CarregarFunc2()
+    Dim rs As Object
+    Dim sql As String
+    
+    ' Garante que a conexão está ativa
+    If conn Is Nothing Then
+        Conectar
+    End If
+    If conn Is Nothing Then Exit Sub ' Sai se a conexão falhar
+    
+    ' Define a consulta SQL
+    sql = "SELECT Nome FROM BD_Funcionários ORDER BY Nome"
+    
+    ' Cria e executa o recordset
+    Set rs = CreateObject("ADODB.Recordset")
+    rs.Open sql, conn, 1, 1 ' adOpenKeyset, adLockReadOnly
+
+    ' Preenche a ComboBox com "Todos Funcionários" no início
+    CRM.cbbFunc.Clear
+    CRM.cbbFunc.AddItem "Todos Funcionários" ' Adiciona a opção no início
+    Do While Not rs.EOF
+        CRM.cbbFunc.AddItem rs.Fields("Nome").Value
+        rs.MoveNext
+    Loop
+    
+    ' Fecha o recordset
+    rs.Close
+    Set rs = Nothing
+End Sub
+
+Public Sub CarregarCRM()
+    ' Garante que a conexão está ativa
+    If conn Is Nothing Then Call Conectar
+    If conn.State <> 1 Then
+        MsgBox "Erro: conexão com o banco de dados não está ativa.", vbCritical
+        Exit Sub
+    End If
+    
+    ' Limpa os ListViews antes de preencher
+    With CRM
+        .lvwPriCon.ListItems.Clear
+        .lvwAnda.ListItems.Clear
+        .lvwFec.ListItems.Clear
+        .lvwFin.ListItems.Clear
+    End With
+    
+    ' Declarar variáveis
+    Dim rs As Object, sql As String
+    Dim idServico As String, nome As String, status As String, prioridade As Integer
+    Dim item As ListItem
+    Dim iconIndex As Integer
+    
+    ' Consulta SQL para buscar os serviços
+    sql = "SELECT s.ID_Serviço, c.Nome, s.Status, s.Prioridade " & _
+          "FROM BD_Serviço s " & _
+          "INNER JOIN BD_Cliente c ON s.ID_Cliente = c.ID_Cliente"
+    
+    Set rs = conn.Execute(sql)
+    
+    ' Percorre os resultados e preenche os ListViews
+    Do While Not rs.EOF
+        idServico = rs.Fields("ID_Serviço").Value
+        nome = rs.Fields("Nome").Value
+        status = rs.Fields("Status").Value
+        prioridade = rs.Fields("Prioridade").Value ' Busca o valor da prioridade
+        
+        ' Define o índice do ícone com base no valor da prioridade
+        Select Case prioridade
+            Case 1
+                iconIndex = 1 ' Imagem 2 para prioridade 1
+            Case 2
+                iconIndex = 2 ' Imagem 3 para prioridade 2
+            Case 3
+                iconIndex = 3 ' Imagem 4 para prioridade 3
+            Case Else
+                iconIndex = 4 ' Default, caso não tenha valor válido
+        End Select
+        
+        ' Adiciona no ListView correspondente
+        With CRM
+            Select Case status
+                Case "Primeiro Contato"
+                    Set item = .lvwPriCon.ListItems.Add(, , idServico)
+                    item.SubItems(1) = nome
+                    item.ListSubItems.Add , , , iconIndex ' Adiciona o ícone à direita
+                Case "Em andamento"
+                    Set item = .lvwAnda.ListItems.Add(, , idServico)
+                    item.SubItems(1) = nome
+                    item.ListSubItems.Add , , , iconIndex ' Adiciona o ícone à direita
+                Case "Fechado"
+                    Set item = .lvwFec.ListItems.Add(, , idServico)
+                    item.SubItems(1) = nome
+                    item.ListSubItems.Add , , , iconIndex ' Adiciona o ícone à direita
+                Case "Finalizado"
+                    Set item = .lvwFin.ListItems.Add(, , idServico)
+                    item.SubItems(1) = nome
+                    item.ListSubItems.Add , , , iconIndex ' Adiciona o ícone à direita
+            End Select
+        End With
+        
+        ' Avança para o próximo registro
+        rs.MoveNext
+    Loop
+    
+    ' Fecha o recordset
+    rs.Close
+End Sub
+
+
+
+
+
+
+' Evento ao clicar no ListView - Apenas seleciona a linha e atualiza o ID no Label
+Public Sub lvw_Click(lvw As Object, lblIDFunc As Object)
+    Dim itemSelecionado As Object
+
+    ' Verifica se há um item selecionado
+    If lvw.SelectedItem Is Nothing Then Exit Sub
+    
+    ' Obtém o item selecionado
+    Set itemSelecionado = lvw.SelectedItem
+    
+    ' Atualiza o Label com o ID do serviço
+    lblIDFunc.Caption = itemSelecionado.Text
+End Sub
+
+
+
+' Função para alterar o status SOMENTE ao clicar no botão
+Public Sub AlterarStatusListView(lvw As Object, cbbStatus As Object, conn As Object, lblIDFunc As Object)
+    Dim idServico As String
+    Dim novoStatus As String
+    
+    ' Verifica se um ID foi selecionado
+    If lblIDFunc.Caption = "" Then
+        MsgBox "Nenhum ID selecionado. Por favor, selecione um item primeiro.", vbExclamation
+        Exit Sub
+    End If
+    
+    ' Obtém o ID do serviço
+    idServico = lblIDFunc.Caption
+    
+    ' Obtém o novo status selecionado no ComboBox
+    novoStatus = cbbStatus.Value
+    
+    ' Garante que um status foi selecionado
+    If novoStatus = "" Then
+        MsgBox "Por favor, selecione um novo status.", vbExclamation
+        Exit Sub
+    End If
+    
+    ' Chama a função para atualizar o banco de dados
+    Call AtualizarStatusNoBanco(idServico, novoStatus, conn)
+    
+    ' Atualiza os ListViews
+    Call AtualizarListViews(conn)
+    
+    'MsgBox "Status atualizado com sucesso!", vbInformation
+End Sub
+
+
+' Função para atualizar o status no banco de dados
+Public Sub AtualizarStatusNoBanco(idServico As String, novoStatus As String, conn As Object)
+    ' Verifica se a conexão com o banco de dados está ativa
+    If conn Is Nothing Then
+        MsgBox "Erro: conexão com o banco de dados não está ativa.", vbCritical
+        Exit Sub
+    End If
+    
+    ' Comando SQL para atualizar o status no banco
+    Dim sql As String
+    sql = "UPDATE BD_Serviço SET Status = '" & novoStatus & "' WHERE ID_Serviço = '" & idServico & "'"
+    
+    On Error GoTo ErrorHandler
+    ' Executa o comando
+    conn.Execute sql
+    
+    ' Caso a execução seja bem-sucedida
+    Exit Sub
+
+ErrorHandler:
+    ' Caso ocorra erro durante a execução
+    MsgBox "Erro ao atualizar o status no banco de dados: " & Err.Description, vbCritical
+End Sub
+
+Public Sub AtualizarListViews(conn As Object)
+    ' Garante que a conexão está ativa
+    If conn Is Nothing Then
+        MsgBox "Erro: conexão com o banco de dados não está ativa.", vbCritical
+        Exit Sub
+    End If
+
+    ' Limpa os ListViews antes de preencher
+    With CRM
+        .lvwPriCon.ListItems.Clear
+        .lvwAnda.ListItems.Clear
+        .lvwFec.ListItems.Clear
+        .lvwFin.ListItems.Clear
+    End With
+
+    ' Declarar variáveis
+    Dim rs As Object, sql As String
+    Dim idServico As String, nome As String, status As String, prioridade As Integer
+    Dim item As ListItem
+    Dim iconIndex As Integer
+
+    ' Consulta SQL para buscar os serviços
+    sql = "SELECT s.ID_Serviço, c.Nome, s.Status, s.Prioridade " & _
+          "FROM BD_Serviço s " & _
+          "INNER JOIN BD_Cliente c ON s.ID_Cliente = c.ID_Cliente"
+
+    Set rs = conn.Execute(sql)
+
+    ' Percorre os resultados e preenche os ListViews
+    Do While Not rs.EOF
+        idServico = rs.Fields("ID_Serviço").Value
+        nome = rs.Fields("Nome").Value
+        status = rs.Fields("Status").Value
+        prioridade = rs.Fields("Prioridade").Value ' Busca o valor da prioridade
+
+        ' Define o índice do ícone com base no valor da prioridade
+        Select Case prioridade
+            Case 1
+                iconIndex = 1 ' Imagem 2 para prioridade 1
+            Case 2
+                iconIndex = 2 ' Imagem 3 para prioridade 2
+            Case 3
+                iconIndex = 3 ' Imagem 4 para prioridade 3
+            Case Else
+                iconIndex = 4 ' Default, caso não tenha valor válido
+        End Select
+
+        ' Adiciona no ListView correspondente
+        With CRM
+            Select Case status
+                Case "Primeiro Contato"
+                    Set item = .lvwPriCon.ListItems.Add(, , idServico)
+                    item.SubItems(1) = nome
+                    item.ListSubItems.Add , , , iconIndex ' Adiciona o ícone à direita
+                Case "Em andamento"
+                    Set item = .lvwAnda.ListItems.Add(, , idServico)
+                    item.SubItems(1) = nome
+                    item.ListSubItems.Add , , , iconIndex ' Adiciona o ícone à direita
+                Case "Fechado"
+                    Set item = .lvwFec.ListItems.Add(, , idServico)
+                    item.SubItems(1) = nome
+                    item.ListSubItems.Add , , , iconIndex ' Adiciona o ícone à direita
+                Case "Finalizado"
+                    Set item = .lvwFin.ListItems.Add(, , idServico)
+                    item.SubItems(1) = nome
+                    item.ListSubItems.Add , , , iconIndex ' Adiciona o ícone à direita
+            End Select
+        End With
+
+        ' Avança para o próximo registro
+        rs.MoveNext
+    Loop
+
+    ' Fecha o recordset
+    rs.Close
+End Sub
+
+Public Sub FiltrarPorFuncionario2()
+    Dim sql As String
+    Dim rs As Object
+    Dim idFunc As String
+    Dim nomeFunc As String
+
+    ' Garante que a conexão está ativa
+    If conn Is Nothing Then Call Conectar
+
+    ' Verifica se um funcionário foi selecionado
+    If CRM.cbbFunc.ListIndex = -1 Then
+        MsgBox "Selecione um funcionário para filtrar.", vbExclamation
+        Exit Sub
+    End If
+
+    ' Obtém o nome do funcionário selecionado
+    nomeFunc = CRM.cbbFunc.Value
+
+    ' Busca o ID do funcionário na BD_Funcionários
+    sql = "SELECT ID_Func FROM BD_Funcionários WHERE Nome = '" & nomeFunc & "'"
+    Set rs = conn.Execute(sql)
+
+    ' Se não encontrar o funcionário, sai da função
+    If rs.EOF Then
+        MsgBox "Funcionário não encontrado.", vbCritical
+        Exit Sub
+    End If
+
+    ' Obtém o ID do funcionário
+    idFunc = rs.Fields("ID_Func").Value
+    rs.Close
+
+    ' Atualiza os ListViews apenas com os serviços desse funcionário
+    AtualizarListViewsComFiltro idFunc
+End Sub
+
+Public Sub AtualizarListViewsComFiltro(idFunc As String)
+    Dim sql As String
+    Dim rs As Object
+    Dim idServico As String, nome As String, status As String, prioridade As Integer
+    Dim item As ListItem
+    Dim iconIndex As Integer
+
+    ' Limpa os ListViews antes de preencher
+    With CRM
+        .lvwPriCon.ListItems.Clear
+        .lvwAnda.ListItems.Clear
+        .lvwFec.ListItems.Clear
+        .lvwFin.ListItems.Clear
+    End With
+
+    ' Consulta SQL para buscar os serviços do funcionário filtrado
+    sql = "SELECT s.ID_Serviço, c.Nome, s.Status, s.Prioridade " & _
+          "FROM BD_Serviço s " & _
+          "INNER JOIN BD_Cliente c ON s.ID_Cliente = c.ID_Cliente " & _
+          "WHERE s.ID_Func = " & idFunc
+
+    Set rs = conn.Execute(sql)
+
+    ' Percorre os resultados e preenche os ListViews
+    Do While Not rs.EOF
+        idServico = rs.Fields("ID_Serviço").Value
+        nome = rs.Fields("Nome").Value
+        status = rs.Fields("Status").Value
+        prioridade = rs.Fields("Prioridade").Value
+
+        ' Define o ícone com base na prioridade
+        Select Case prioridade
+            Case 1: iconIndex = 1
+            Case 2: iconIndex = 2
+            Case 3: iconIndex = 3
+        End Select
+
+        ' Adiciona no ListView correspondente
+        With CRM
+            Select Case status
+                Case "Primeiro Contato"
+                    Set item = .lvwPriCon.ListItems.Add(, , idServico)
+                Case "Em andamento"
+                    Set item = .lvwAnda.ListItems.Add(, , idServico)
+                Case "Fechado"
+                    Set item = .lvwFec.ListItems.Add(, , idServico)
+                Case "Finalizado"
+                    Set item = .lvwFin.ListItems.Add(, , idServico)
+            End Select
+
+            ' Preenche os subitens
+            item.SubItems(1) = nome
+            item.ListSubItems.Add 2, , , iconIndex ' Adiciona o ícone no subitem 2
+        End With
+
+        ' Avança para o próximo registro
+        rs.MoveNext
+    Loop
+
+    ' Fecha o recordset
+    rs.Close
+End Sub
+
+Private Sub AbrirOrcamento2()
+    Dim sql As String
+    Dim idServico As String
+    Dim rs As Object
+    Dim conn As Object
+    
+    ' Chama a função de conectar
+    If conn Is Nothing Then Call Conectar
+    
+    ' Verifica se há um item selecionado no ListView
+    If CRM.lvwPriCon.SelectedItem Is Nothing And _
+       CRM.lvwAnda.SelectedItem Is Nothing And _
+       CRM.lvwFec.SelectedItem Is Nothing And _
+       CRM.lvwFin.SelectedItem Is Nothing Then
+        MsgBox "Selecione um serviço antes de abrir o orçamento.", vbExclamation
+        Exit Sub
+    End If
+    
+    ' Obtém o ID_Serviço do item selecionado
+    If Not CRM.lvwPriCon.SelectedItem Is Nothing Then
+        idServico = CRM.lvwPriCon.SelectedItem.Text
+    ElseIf Not CRM.lvwAnda.SelectedItem Is Nothing Then
+        idServico = CRM.lvwAnda.SelectedItem.Text
+    ElseIf Not CRM.lvwFec.SelectedItem Is Nothing Then
+        idServico = CRM.lvwFec.SelectedItem.Text
+    ElseIf Not CRM.lvwFin.SelectedItem Is Nothing Then
+        idServico = CRM.lvwFin.SelectedItem.Text
+    End If
+    
+    ' Consulta SQL para buscar o orçamento
+    sql = "SELECT Orçamento FROM BD_Serviço WHERE ID_Serviço = " & idServico
+    Set rs = conn.Execute(sql)
+    
+    ' Se houver resultado, exibe o orçamento
+    If Not rs.EOF Then
+        MsgBox "Orçamento: " & rs.Fields("Orçamento").Value, vbInformation
+    Else
+        MsgBox "Orçamento não encontrado para este serviço.", vbExclamation
+    End If
+    
+    ' Fecha o recordset
+    rs.Close
+End Sub
+
+Public Sub AbrirEditarCliente()
+    Dim sql As String
+    Dim idServico As String
+    Dim idCliente As String
+    Dim nomeCliente As String
+    Dim telefoneCliente As String
+    Dim enderecoCliente As String
+    Dim nomeFuncionario As String
+    Dim tipo As String
+    Dim servico As String
+    Dim status As String
+    Dim orcamento As String
+    Dim rs As Object
+
+    ' Verifique se a variável conn foi inicializada
+    If conn Is Nothing Then
+        MsgBox "A conexão não está inicializada. Tentando conectar..."
+        Call Conectar
+    End If
+
+    ' Verifique se a conexão está aberta
+    If conn.State <> 1 Then
+        MsgBox "A conexão não está aberta corretamente.", vbCritical
+        Exit Sub
+    End If
+
+    ' Verifica se há um item selecionado no ListView
+    If CRM.lvwPriCon.SelectedItem Is Nothing And _
+       CRM.lvwAnda.SelectedItem Is Nothing And _
+       CRM.lvwFec.SelectedItem Is Nothing And _
+       CRM.lvwFin.SelectedItem Is Nothing Then
+        MsgBox "Selecione um serviço antes de editar o cliente.", vbExclamation
+        Exit Sub
+    End If
+
+    ' Obtém o ID_Serviço do item selecionado
+    If Not CRM.lvwPriCon.SelectedItem Is Nothing Then
+        idServico = CRM.lvwPriCon.SelectedItem.Text
+    ElseIf Not CRM.lvwAnda.SelectedItem Is Nothing Then
+        idServico = CRM.lvwAnda.SelectedItem.Text
+    ElseIf Not CRM.lvwFec.SelectedItem Is Nothing Then
+        idServico = CRM.lvwFec.SelectedItem.Text
+    ElseIf Not CRM.lvwFin.SelectedItem Is Nothing Then
+        idServico = CRM.lvwFin.SelectedItem.Text
+    End If
+
+    ' Consulta SQL para obter o ID_Cliente
+    sql = "SELECT s.ID_Cliente, c.Nome AS ClienteNome, c.Telefone, c.Endereço, " & _
+          "f.Nome AS FuncionarioNome, c.Tipo, s.Serviço, s.Status, s.Orçamento " & _
+          "FROM BD_Serviço s " & _
+          "INNER JOIN BD_Cliente c ON s.ID_Cliente = c.ID_Cliente " & _
+          "INNER JOIN BD_Funcionários f ON s.ID_Func = f.ID_Func " & _
+          "WHERE s.ID_Serviço = " & idServico
+
+    Set rs = conn.Execute(sql)
+
+    ' Se encontrou o cliente, busca os dados do cliente e preenche o formulário
+    If Not rs.EOF Then
+        idCliente = rs.Fields("ID_Cliente").Value
+        nomeCliente = rs.Fields("ClienteNome").Value
+        telefoneCliente = rs.Fields("Telefone").Value
+        enderecoCliente = rs.Fields("Endereço").Value
+        nomeFuncionario = rs.Fields("FuncionarioNome").Value
+        tipo = rs.Fields("Tipo").Value
+        servico = rs.Fields("Serviço").Value
+        status = rs.Fields("Status").Value
+        orcamento = rs.Fields("Orçamento").Value
+
+        ' Preenche os campos do UserForm com os dados encontrados
+        Cliente.txtNome.Value = nomeCliente
+        Cliente.txtTel.Value = telefoneCliente
+        Cliente.txtEnd.Value = enderecoCliente
+        Cliente.cbbFunc.Value = nomeFuncionario
+        Cliente.txtServ.Value = servico
+        Cliente.txtEnt.Value = status
+        Cliente.txtOrc.Value = orcamento
+        Cliente.cbbTipo.Value = tipo ' Caso seja necessário ajustar os tipos conforme o seu DB
+    Else
+        MsgBox "Cliente não encontrado para este serviço.", vbExclamation
+    End If
+    
+    ' Fecha o recordset
+    rs.Close
+    
+    ' Exibe o formulário para edição
+    Cliente.Show
+
+    
+End Sub
+
+
+-----------------
+#GereTarefas UserForm
+
+Private Sub Label1_Click()
+Unload Me
+End Sub
+
+Private Sub Label5_Click()
+AlterarStatusTarefa
+End Sub
+
+Private Sub Label5_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = True
+End Sub
+
+Private Sub Label5_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = False
+End Sub
+
+Private Sub Label6_Click()
+ExcluirTarefa
+End Sub
+
+Private Sub Label6_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label6.Font.Bold = True
+End Sub
+
+Private Sub Label6_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label6.Font.Bold = False
+End Sub
+
+Private Sub Label7_Click()
+EditarTarefa
+End Sub
+
+Private Sub Label7_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = True
+End Sub
+
+Private Sub Label7_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = False
+End Sub
+
+Private Sub UserForm_Activate()
+HideTitleBarAndBorder5 Me 'hide the titlebar and border
+MakeUserFormTransparent5 Me  'make certain color transparent
+End Sub
+
+Private Sub IcSBdiminuir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+Private Sub IcSBexpandir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+      
+End Sub
+
+Private Sub txtSBsetaDOWN_Click()
+    Me.txtSB2add.Visible = True
+    Me.txtSB2gere.Visible = True
+    Me.txtSBsetaDOWN.Visible = False
+    Me.txtSBsetaUP.Visible = True
+    Me.txtSBbarrinha.Visible = True
+End Sub
+
+Private Sub txtSBsetaUP_Click()
+    Me.txtSB2add.Visible = False
+    Me.txtSB2gere.Visible = False
+    Me.txtSBsetaUP.Visible = False
+    Me.txtSBsetaDOWN.Visible = True
+    Me.txtSBbarrinha.Visible = False
+End Sub
+
+Private Sub UserForm_Click()
+    If lblSidebar.Width > 100 Then
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+
+Private Sub txtSB2Gere_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Gere_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = True
+End Sub
+
+Private Sub txtSB2Add_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Add_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = True
+End Sub
+
+Private Sub txtSBtarefas_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = False
+End Sub
+
+Private Sub txtSBtarefas_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereCli_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereCli_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereFunc_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereFunc_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = True
+
+End Sub
+
+Private Sub txtSBajuda_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = False
+End Sub
+
+Private Sub txtSBajuda_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = True
+End Sub
+
+Private Sub txtSBHist_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = False
+End Sub
+
+Private Sub txtSBHist_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = True
+End Sub
+
+Private Sub txtSBcrm_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = False
+End Sub
+
+Private Sub txtSBcrm_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = True
+End Sub
+
+Private Sub UserForm_Initialize()
+
+With Me.lvwTarefas
+     .ColumnHeaders.Add , , "ID", 50
+     .ColumnHeaders.Add , , "Tarefa", 460
+     .ColumnHeaders.Add , , "Status_Tarefa", 80
+End With
+
+EfeitoDiminuir Me
+txtSBpicked.ZOrder (1)
+lblpicked.ZOrder (1)
+lblSidebar.ZOrder (1)
+
+PreencherListView
+End Sub
+
+
+-------------
+#GereTarefas Módulo
+
+Sub PreencherListView()
+    ' Verifica se a conexão está ativa
+    Call Conectar
+    ' Limpar o ListView antes de preencher
+    GereTarefas.lvwTarefas.ListItems.Clear
+
+    ' Declarar variáveis
+    Dim rs As Object
+    Dim sql As String
+    Dim item As Object
+    Dim tarefa As String
+
+    ' Definir o SQL para pegar os dados da tabela BD_Tarefas
+    sql = "SELECT ID_Tarefas, Status_Tarefa, Campo_Data, Lógica, Valor_numérico, Medida_Tempo, Texto " & _
+          "FROM BD_Tarefas"
+
+    ' Executar a consulta e obter o recordset
+    Set rs = conn.Execute(sql)
+
+    ' Preencher o ListView com os dados
+    Do While Not rs.EOF
+        ' Concatena os campos Texto, Lógica, Valor_numérico e Medida_Tempo para a coluna Tarefa
+        tarefa = rs.Fields("Texto").Value & " " & rs.Fields("Lógica").Value & " " & _
+                 rs.Fields("Valor_numérico").Value & " " & rs.Fields("Medida_Tempo").Value
+
+        ' Adiciona um item no ListView
+        Set item = GereTarefas.lvwTarefas.ListItems.Add(, , rs.Fields("ID_Tarefas").Value)
+        
+        ' Adiciona as colunas ao item do ListView
+        item.SubItems(1) = tarefa
+        item.SubItems(2) = rs.Fields("Status_Tarefa").Value
+
+        ' Avança para o próximo registro
+        rs.MoveNext
+    Loop
+
+    ' Fechar o Recordset
+    rs.Close
+    Set rs = Nothing
+End Sub
+
+Sub AlterarStatusTarefa()
+    Dim item As MSComctlLib.ListItem
+    Dim novoStatus As String
+    Dim sql As String
+    Dim idTarefa As String
+    
+    ' Verifica se há um item selecionado
+    If GereTarefas.lvwTarefas.SelectedItem Is Nothing Then
+        MsgBox "Selecione uma tarefa para alterar o status!", vbExclamation, "Atenção"
+        Exit Sub
+    End If
+    
+    ' Obtém o item selecionado
+    Set item = GereTarefas.lvwTarefas.SelectedItem
+    idTarefa = item.Text ' ID da tarefa está na primeira coluna
+    
+    ' Verifica o status atual e define o novo status
+    If item.SubItems(2) = "Ativo" Then
+        novoStatus = "Desativado"
+    Else
+        novoStatus = "Ativo"
+    End If
+
+    ' Confirma a alteração com o usuário
+    If MsgBox("Deseja realmente alterar o status para '" & novoStatus & "'?", vbYesNo + vbQuestion, "Confirmar alteração") = vbNo Then
+        Exit Sub
+    End If
+
+    ' Atualiza o status no banco de dados
+    Call Conectar
+    sql = "UPDATE BD_Tarefas SET Status_Tarefa = '" & novoStatus & "' WHERE ID_Tarefas = " & idTarefa
+    conn.Execute sql
+    conn.Close
+    Set conn = Nothing
+
+    ' Atualiza o ListView
+    item.SubItems(2) = novoStatus ' Atualiza a coluna "Status"
+
+
+    MsgBox "Status alterado com sucesso!", vbInformation, "Sucesso"
+End Sub
+
+Sub ExcluirTarefa()
+    Dim item As MSComctlLib.ListItem
+    Dim sql As String
+    Dim idTarefa As String
+    
+    ' Verifica se há um item selecionado
+    If GereTarefas.lvwTarefas.SelectedItem Is Nothing Then
+        MsgBox "Selecione uma tarefa para excluir!", vbExclamation, "Atenção"
+        Exit Sub
+    End If
+    
+    ' Obtém o item selecionado
+    Set item = GereTarefas.lvwTarefas.SelectedItem
+    idTarefa = item.Text ' ID da tarefa está na primeira coluna
+    
+    ' Confirma a exclusão com o usuário
+    If MsgBox("Tem certeza que deseja excluir esta tarefa?" & vbCrLf & "Esta ação não pode ser desfeita!", vbYesNo + vbCritical, "Confirmar exclusão") = vbNo Then
+        Exit Sub
+    End If
+
+    ' Exclui a tarefa do banco de dados
+    Call Conectar
+    sql = "DELETE FROM BD_Tarefas WHERE ID_Tarefas = " & idTarefa
+    conn.Execute sql
+    conn.Close
+    Set conn = Nothing
+
+    ' Remove a linha do ListView
+    item.Remove
+
+    MsgBox "Tarefa excluída com sucesso!", vbInformation, "Sucesso"
+End Sub
+
+Sub EditarTarefa()
+    Dim item As MSComctlLib.ListItem
+    Dim sql As String
+    Dim rs As Object
+
+    ' Verifica se há um item selecionado
+    If GereTarefas.lvwTarefas.SelectedItem Is Nothing Then
+        MsgBox "Selecione uma tarefa para editar!", vbExclamation, "Atenção"
+        Exit Sub
+    End If
+    
+    ' Obtém o item selecionado
+    Set item = GereTarefas.lvwTarefas.SelectedItem
+    Dim idTarefa As String
+    idTarefa = item.Text ' ID_Tarefas está na primeira coluna
+
+    ' Conectar ao banco de dados
+    Call Conectar
+    sql = "SELECT Campo_Data, Lógica, Valor_Numérico, Medida_Tempo, Texto FROM BD_Tarefas WHERE ID_Tarefas = " & idTarefa
+    Set rs = conn.Execute(sql)
+
+    ' Se encontrou o registro, preenche os campos
+    If Not rs.EOF Then
+        With AddTarefa
+            .txtIDTarefa.Value = idTarefa
+            .cbbCampo.Value = rs.Fields("Campo_Data").Value
+            .cbbLogica.Value = rs.Fields("Lógica").Value
+            .txtValNum.Value = rs.Fields("Valor_Numérico").Value
+            .cbbUnTemp.Value = rs.Fields("Medida_Tempo").Value
+            .txtTexto.Value = rs.Fields("Texto").Value
+        End With
+    Else
+        MsgBox "Erro ao carregar a tarefa!", vbCritical, "Erro"
+        rs.Close
+        conn.Close
+        Set conn = Nothing
+        Exit Sub
+    End If
+
+    ' Fechar recordset e conexão
+    rs.Close
+    conn.Close
+    Set rs = Nothing
+    Set conn = Nothing
+
+    ' Exibir o formulário de edição
+    AddTarefa.Show
+
+    ' Fechar o formulário atual
+    Unload GereTarefas
+End Sub
+
+
+------------
+#Histórico UserForm
+
+Private Sub Label1_Click()
+Unload Me
+
+End Sub
+
+Private Sub Label5_Click()
+EditarCliente
+End Sub
+
+Private Sub Label5_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = True
+End Sub
+
+Private Sub Label5_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label5.Font.Bold = False
+End Sub
+
+Private Sub Label6_BeforeDropOrPaste(ByVal Cancel As MSForms.ReturnBoolean, ByVal Action As MSForms.fmAction, ByVal Data As MSForms.DataObject, ByVal X As Single, ByVal Y As Single, ByVal Effect As MSForms.ReturnEffect, ByVal Shift As Integer)
+
+End Sub
+
+Private Sub Label6_Click()
+AbrirOrcamentoHistorico
+End Sub
+
+Private Sub Label6_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label6.Font.Bold = True
+End Sub
+
+Private Sub Label6_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label6.Font.Bold = False
+End Sub
+
+Private Sub Label7_Click()
+ExcluirServico
+End Sub
+
+Private Sub Label7_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = True
+End Sub
+
+Private Sub Label7_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = False
+End Sub
+
+Private Sub Label8_Click()
+FiltrarListView
+End Sub
+
+Private Sub Label8_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label8.Font.Bold = True
+End Sub
+
+Private Sub Label8_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label8.Font.Bold = False
+End Sub
+
+Private Sub txtData2_Change()
+
+End Sub
+
+Private Sub UserForm_Activate()
+HideTitleBarAndBorder6 Me 'hide the titlebar and border
+MakeUserFormTransparent6 Me  'make certain color transparent
+End Sub
+
+Private Sub IcSBdiminuir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+Private Sub IcSBexpandir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+      
+End Sub
+
+Private Sub txtSBsetaDOWN_Click()
+    Me.txtSB2add.Visible = True
+    Me.txtSB2gere.Visible = True
+    Me.txtSBsetaDOWN.Visible = False
+    Me.txtSBsetaUP.Visible = True
+    Me.txtSBbarrinha.Visible = True
+End Sub
+
+Private Sub txtSBsetaUP_Click()
+    Me.txtSB2add.Visible = False
+    Me.txtSB2gere.Visible = False
+    Me.txtSBsetaUP.Visible = False
+    Me.txtSBsetaDOWN.Visible = True
+    Me.txtSBbarrinha.Visible = False
+End Sub
+
+Private Sub UserForm_Click()
+    If lblSidebar.Width > 100 Then
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+
+Private Sub txtSB2Gere_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Gere_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = True
+End Sub
+
+Private Sub txtSB2Add_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Add_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = True
+End Sub
+
+Private Sub txtSBtarefas_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = False
+End Sub
+
+Private Sub txtSBtarefas_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereCli_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereCli_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereFunc_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereFunc_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = True
+
+End Sub
+
+Private Sub txtSBajuda_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = False
+End Sub
+
+Private Sub txtSBajuda_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = True
+End Sub
+
+Private Sub txtSBHist_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = False
+End Sub
+
+Private Sub txtSBHist_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = True
+End Sub
+
+Private Sub txtSBcrm_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = False
+End Sub
+
+Private Sub txtSBcrm_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = True
+End Sub
+
+Private Sub UserForm_Initialize()
+
+EfeitoDiminuir Me
+txtSBpicked.ZOrder (1)
+lblpicked.ZOrder (1)
+lblSidebar.ZOrder (1)
+
+    With Me.lvwHistorico
+        .View = lvwReport
+        .FullRowSelect = True
+        .Gridlines = True
+        .ColumnHeaders.Clear
+        .ColumnHeaders.Add , , "Id Serviço", 60
+        .ColumnHeaders.Add , , "ID Cliente", 60
+        .ColumnHeaders.Add , , "Nome", 100
+        .ColumnHeaders.Add , , "Telefone", 100
+        .ColumnHeaders.Add , , "Solicitação", 120
+        .ColumnHeaders.Add , , "Data Entrada", 80
+        .ColumnHeaders.Add , , "Status", 80
+        .ColumnHeaders.Add , , "Última Atualização", 120
+        .ColumnHeaders.Add , , "Data Agendada", 80
+        .ColumnHeaders.Add , , "Valor", 80
+        .ColumnHeaders.Add , , "Observação", 120
+    End With
+    
+    cbbStatus.Clear
+    cbbStatus.AddItem "Primeiro Contato"
+    cbbStatus.AddItem "Em andamento"
+    cbbStatus.AddItem "Fechado"
+    cbbStatus.AddItem "Finalizado"
+    cbbStatus.AddItem "Negado"
+    
+PreencherListViewHistorico
+
+End Sub
+
+-------------
+#Histórico módulo
+
+' Módulo: Mod_Historico
+Option Explicit
+
+Sub CriarColunasListView(lvw As MSComctlLib.ListView)
+    ' Configura as colunas do ListView
+    With lvw
+        .View = lvwReport
+        .FullRowSelect = True
+        .Gridlines = True
+        .ColumnHeaders.Clear
+        .ColumnHeaders.Add , , "ID Cliente", 60
+        .ColumnHeaders.Add , , "Nome", 100
+        .ColumnHeaders.Add , , "Telefone", 100
+        .ColumnHeaders.Add , , "Solicitação", 120
+        .ColumnHeaders.Add , , "Data Entrada", 80
+        .ColumnHeaders.Add , , "Status", 80
+        .ColumnHeaders.Add , , "Última Atualização", 120
+        .ColumnHeaders.Add , , "Data Agendada", 80
+        .ColumnHeaders.Add , , "Valor", 80
+        .ColumnHeaders.Add , , "Observação", 120
+    End With
+End Sub
+
+Sub PreencherListViewHistorico()
+    ' Garante que a conexão está ativa
+    If conn Is Nothing Then Call Conectar
+    If conn.State <> 1 Then
+        MsgBox "Erro: conexão com o banco de dados não está ativa.", vbCritical
+        Exit Sub
+    End If
+
+    ' Limpar o ListView antes de preencher
+    historico.lvwHistorico.ListItems.Clear
+
+    ' Declarar variáveis
+    Dim rs As Object
+    Dim sql As String
+    Dim item As Object
+
+    ' Definir o SQL para pegar os dados, agora com ID_Serviço
+    sql = "SELECT c.ID_Cliente, c.Nome, c.Telefone, " & _
+          "s.ID_Serviço, s.Serviço, s.Data_Entrada, s.Status, s.Valor, s.Observação, r.Data_Agendada, " & _
+          "(SELECT MAX(dt) FROM (VALUES (r.Data_Fechada), (r.Data_Agendada), (r.Data_Finalizada), (r.Data_Negada)) AS T(dt)) AS UltimaAtualizacao " & _
+          "FROM BD_Cliente c " & _
+          "INNER JOIN BD_Serviço s ON c.ID_Cliente = s.ID_Cliente " & _
+          "INNER JOIN BD_RegistroStatus r ON s.ID_Serviço = r.ID_Serviço"
+
+    ' Criar Recordset
+    Set rs = CreateObject("ADODB.Recordset")
+
+    ' Abrir o recordset corretamente
+    rs.Open sql, conn, 3, 1 ' adOpenStatic, adLockReadOnly
+
+    ' Verificar se há registros
+    If rs.EOF Then
+        MsgBox "Nenhum dado encontrado.", vbInformation
+        rs.Close
+        Exit Sub
+    End If
+
+    ' Preencher o ListView com os dados
+    Do While Not rs.EOF
+        ' Adiciona um item no ListView com ID_Serviço
+        Set item = historico.lvwHistorico.ListItems.Add(, , Nz(rs.Fields("ID_Serviço").Value, "N/A"))
+        
+        ' Preenche as colunas
+        item.SubItems(1) = Nz(rs.Fields("ID_Cliente").Value, "N/A")
+        item.SubItems(2) = Nz(rs.Fields("Nome").Value, "N/A")
+        item.SubItems(3) = Nz(rs.Fields("Telefone").Value, "N/A")
+        item.SubItems(4) = Nz(rs.Fields("Serviço").Value, "N/A")
+        item.SubItems(5) = Nz(rs.Fields("Data_Entrada").Value, "N/A")
+        item.SubItems(6) = Nz(rs.Fields("Status").Value, "N/A")
+        item.SubItems(7) = Nz(rs.Fields("UltimaAtualizacao").Value, "N/A")
+        item.SubItems(8) = Nz(rs.Fields("Data_Agendada").Value, "N/A")
+        item.SubItems(9) = Nz(rs.Fields("Valor").Value, "0") ' Aqui pode ser "0" caso seja numérico
+        item.SubItems(10) = Nz(rs.Fields("Observação").Value, "Sem observação")
+
+        rs.MoveNext
+    Loop
+
+    ' Fechar o Recordset
+    rs.Close
+    Set rs = Nothing
+End Sub
+
+
+Function Nz(valor, opcional As Variant) As Variant
+    If IsNull(valor) Or IsEmpty(valor) Then
+        Nz = opcional
+    Else
+        Nz = valor
+    End If
+End Function
+
+Sub ExcluirServico()
+    ' Verifica se há um item selecionado
+    If historico.lvwHistorico.SelectedItem Is Nothing Then
+        MsgBox "Selecione um serviço para excluir.", vbExclamation
+        Exit Sub
+    End If
+    
+    ' Pega o ID_Serviço do item selecionado
+    Dim ID_Servico As String
+    ID_Servico = historico.lvwHistorico.SelectedItem.Text ' O primeiro valor da linha (ID_Cliente)
+
+    ' Pede confirmação ao usuário
+    Dim resposta As Integer
+    resposta = MsgBox("Tem certeza que deseja excluir este serviço? Essa ação não pode ser desfeita.", vbYesNo + vbCritical, "Confirmar Exclusão")
+    
+    If resposta = vbNo Then Exit Sub
+
+    ' Verifica se a conexão está ativa
+    If conn Is Nothing Then Call Conectar
+    If conn.State <> 1 Then
+        MsgBox "Erro: conexão com o banco de dados não está ativa.", vbCritical
+        Exit Sub
+    End If
+
+    ' Exclui os registros dos bancos de dados relacionados ao serviço
+    Dim sql As String
+    On Error GoTo ErroExcluir
+
+    ' Exclui primeiro os registros relacionados no BD_RegistroStatus
+    sql = "DELETE FROM BD_RegistroStatus WHERE ID_Serviço = " & ID_Servico
+    conn.Execute sql
+
+    ' Exclui o serviço do BD_Serviço
+    sql = "DELETE FROM BD_Serviço WHERE ID_Serviço = " & ID_Servico
+    conn.Execute sql
+
+    ' Remove o item do ListView
+    historico.lvwHistorico.ListItems.Remove (historico.lvwHistorico.SelectedItem.Index)
+
+
+    MsgBox "Serviço excluído com sucesso.", vbInformation
+    Exit Sub
+
+ErroExcluir:
+    MsgBox "Erro ao excluir o serviço: " & Err.Description, vbCritical
+End Sub
+
+Sub EditarCliente()
+    ' Verifica se uma linha está selecionada no ListView
+    If historico.lvwHistorico.SelectedItem Is Nothing Then
+        MsgBox "Selecione um cliente para editar.", vbExclamation
+        Exit Sub
+    End If
+    
+    ' Pega os IDs de Cliente e Serviço da linha selecionada
+    Dim idCliente As String
+    Dim idServico As String
+    idCliente = historico.lvwHistorico.SelectedItem.SubItems(1) ' ID_Cliente está na segunda coluna
+    idServico = historico.lvwHistorico.SelectedItem.Text ' ID_Serviço está na primeira coluna
+    
+    ' Preenche o campo ID_Serviço no UserForm Cliente
+    Cliente.txtIDServ.Value = idServico
+    
+    ' Verifica se o ID do cliente é válido
+    If idCliente <> "" Then
+        ' Buscar dados do cliente
+        Dim rsCliente As Object
+        Set rsCliente = BuscarDadosCliente(idCliente)
+        
+        ' Preenche os campos do UserForm Cliente com os dados do cliente
+        If Not rsCliente.EOF Then
+            Cliente.txtNome.Value = rsCliente.Fields("Nome").Value
+            Cliente.txtTel.Value = rsCliente.Fields("Telefone").Value
+            Cliente.txtEnd.Value = rsCliente.Fields("Endereço").Value
+            Cliente.cbbTipo.Value = rsCliente.Fields("Tipo").Value
+        End If
+        rsCliente.Close
+        Set rsCliente = Nothing
+        
+        ' Buscar dados do serviço, se ID_Serviço não for vazio
+        If idServico <> "" And idServico <> "Novo serviço" Then
+            Dim rsServico As Object
+            Set rsServico = BuscarDadosServico(idServico)
+            
+            ' Preenche os campos do UserForm Cliente com os dados do serviço
+            If Not rsServico.EOF Then
+                Cliente.txtServ.Value = rsServico.Fields("Serviço").Value
+                Cliente.cbbStatus.Value = rsServico.Fields("Status").Value
+                Cliente.txtValor.Value = rsServico.Fields("Valor").Value
+                Cliente.txtObs.Value = rsServico.Fields("Observação").Value
+                Cliente.txtOrc.Value = rsServico.Fields("Orçamento").Value
+                Cliente.txtEnt.Value = rsServico.Fields("Data_Entrada").Value
+                Cliente.txtAgend.Value = rsServico.Fields("Data_Agendada").Value
+            End If
+            rsServico.Close
+            Set rsServico = Nothing
+        Else
+            ' Se for "Novo serviço", limpa os campos de serviço
+            Cliente.txtServ.Value = ""
+            Cliente.cbbStatus.Value = ""
+            Cliente.txtValor.Value = ""
+            Cliente.txtObs.Value = ""
+            Cliente.txtOrc.Value = ""
+            Cliente.txtEnt.Value = ""
+            Cliente.txtAgend.Value = ""
+        End If
+        
+        ' Buscar o funcionário associado ao cliente e serviço
+        Cliente.cbbFunc.Value = BuscarFuncionarioCliente(idCliente, idServico)
+        
+        ' Exibe o UserForm Cliente
+        Cliente.Show
+        historico.Hide
+    Else
+        MsgBox "Selecione um cliente válido!", vbExclamation
+    End If
+End Sub
+
+Sub FiltrarListView()
+    ' Garante que a conexão está ativa
+    If conn Is Nothing Then Call Conectar
+    If conn.State <> 1 Then
+        MsgBox "Erro: conexão com o banco de dados não está ativa.", vbCritical
+        Exit Sub
+    End If
+
+    ' Limpar o ListView antes de preencher
+    historico.lvwHistorico.ListItems.Clear
+
+    ' Declarar variáveis
+    Dim rs As Object
+    Dim sql As String
+    Dim item As Object
+    Dim filtro As String
+    filtro = ""
+
+    ' Montar a parte do WHERE da consulta dependendo dos campos preenchidos
+    With historico
+    ' Filtro para o Status
+    If .cbbStatus.Value <> "" Then
+        filtro = filtro & " AND s.Status = '" & .cbbStatus.Value & "'"
+    End If
+
+    ' Filtro para o Nome do Cliente
+    If .txtNome.Value <> "" Then
+        filtro = filtro & " AND c.Nome LIKE '%" & .txtNome.Value & "%'"
+    End If
+
+    ' Filtro para a Solicitação (Servico)
+    If .txtSoli.Value <> "" Then
+        filtro = filtro & " AND s.Serviço LIKE '%" & .txtSoli.Value & "%'"
+    End If
+
+    ' Filtro para as datas (Data_Entrada entre Data1 e Data2)
+    If .txtData1.Value <> "" And .txtData2.Value <> "" Then
+        ' Verifica se as datas são válidas
+        If IsValidDate(.txtData1.Value) And IsValidDate(.txtData2.Value) Then
+            filtro = filtro & " AND s.Data_Entrada BETWEEN '" & FormatDate(.txtData1.Value) & "' AND '" & FormatDate(.txtData2.Value) & "'"
+        Else
+            MsgBox "As datas fornecidas não são válidas.", vbExclamation
+            Exit Sub
+        End If
+    ElseIf .txtData1.Value <> "" Then
+        If IsValidDate(.txtData1.Value) Then
+            filtro = filtro & " AND s.Data_Entrada >= '" & FormatDate(.txtData1.Value) & "'"
+        Else
+            MsgBox "A data inicial fornecida não é válida.", vbExclamation
+            Exit Sub
+        End If
+    ElseIf .txtData2.Value <> "" Then
+        If IsValidDate(.txtData2.Value) Then
+            filtro = filtro & " AND s.Data_Entrada <= '" & FormatDate(.txtData2.Value) & "'"
+        Else
+            MsgBox "A data final fornecida não é válida.", vbExclamation
+            Exit Sub
+        End If
+    End If
+    
+    End With
+
+    ' Construir a consulta SQL
+    sql = "SELECT c.ID_Cliente, c.Nome, c.Telefone, " & _
+          "s.Serviço, s.Data_Entrada, s.Status, s.Valor, s.Observação, r.Data_Agendada, " & _
+          "(SELECT MAX(dt) FROM (VALUES (r.Data_Fechada), (r.Data_Agendada), (r.Data_Finalizada), (r.Data_Negada)) AS T(dt)) AS UltimaAtualizacao " & _
+          "FROM BD_Cliente c " & _
+          "INNER JOIN BD_Serviço s ON c.ID_Cliente = s.ID_Cliente " & _
+          "INNER JOIN BD_RegistroStatus r ON s.ID_Serviço = r.ID_Serviço " & _
+          "WHERE 1=1 " & filtro ' Adiciona o filtro gerado
+
+    ' Criar Recordset
+    Set rs = CreateObject("ADODB.Recordset")
+
+    ' Abrir o recordset com a consulta
+    rs.Open sql, conn, 3, 1 ' adOpenStatic, adLockReadOnly
+
+    ' Verificar se há registros
+    If rs.EOF Then
+        MsgBox "Nenhum dado encontrado.", vbInformation
+        rs.Close
+        Exit Sub
+    End If
+
+    ' Preencher o ListView com os dados
+    Do While Not rs.EOF
+        Set item = historico.lvwHistorico.ListItems.Add(, , Nz(rs.Fields("ID_Cliente").Value, "N/A"))
+        
+        item.SubItems(1) = Nz(rs.Fields("Nome").Value, "N/A")
+        item.SubItems(2) = Nz(rs.Fields("Telefone").Value, "N/A")
+        item.SubItems(3) = Nz(rs.Fields("Serviço").Value, "N/A")
+        item.SubItems(4) = Nz(rs.Fields("Data_Entrada").Value, "N/A")
+        item.SubItems(5) = Nz(rs.Fields("Status").Value, "N/A")
+        item.SubItems(6) = Nz(rs.Fields("UltimaAtualizacao").Value, "N/A")
+        item.SubItems(7) = Nz(rs.Fields("Data_Agendada").Value, "N/A")
+        item.SubItems(8) = Nz(rs.Fields("Valor").Value, "0") ' Pode ser "0" se for numérico
+        item.SubItems(9) = Nz(rs.Fields("Observação").Value, "Sem observação")
+
+        rs.MoveNext
+    Loop
+
+    ' Fechar o Recordset
+    rs.Close
+    Set rs = Nothing
+End Sub
+
+' Função para verificar se a data é válida
+Private Function IsValidDate(d As String) As Boolean
+    On Error Resume Next
+    IsValidDate = IsDate(d)
+    On Error GoTo 0
+End Function
+
+' Função para formatar a data corretamente para SQL
+Private Function FormatDate(d As String) As String
+    ' Converte para o formato 'yyyy-mm-dd' esperado pelo SQL Server
+    FormatDate = Format(CDate(d), "yyyy-mm-dd")
+End Function
+
+Public Sub AbrirOrcamentoHistorico()
+    Dim idServico As String
+    Dim sql As String
+    Dim rs As Object
+    Dim url As String
+    Dim destino As String
+    Dim http As Object
+    Dim stream As Object
+    
+    ' Verifica se uma linha está selecionada no ListView
+    If historico.lvwHistorico.SelectedItem Is Nothing Then
+        MsgBox "Selecione um orçamento antes de abrir.", vbExclamation, "Aviso"
+        Exit Sub
+    End If
+    
+    ' Obtém o ID do serviço e o nome do cliente da linha selecionada
+    idServico = historico.lvwHistorico.SelectedItem.Text ' ID está na primeira coluna
+    If idServico = "" Then
+        MsgBox "ID do serviço não encontrado.", vbExclamation, "Aviso"
+        Exit Sub
+    End If
+    
+    ' Verifica se a conexão com o banco de dados está ativa
+    If conn Is Nothing Then Call Conectar
+    If conn Is Nothing Or conn.State = 0 Then
+        MsgBox "Erro ao conectar ao banco de dados.", vbCritical, "Erro"
+        Exit Sub
+    End If
+    
+    ' Consulta SQL para obter o orçamento do BD_Serviço
+    sql = "SELECT Orçamento FROM BD_Serviço WHERE ID_Serviço = '" & idServico & "'"
+    
+    ' Executa a consulta
+    Set rs = conn.Execute(sql)
+    If rs.EOF Then
+        MsgBox "Nenhum orçamento encontrado para este serviço.", vbExclamation, "Aviso"
+        rs.Close
+        Exit Sub
+    End If
+    
+    ' Obtém o link do orçamento
+    url = rs.Fields("Orçamento").Value
+    rs.Close
+    If url = "" Then
+        MsgBox "O orçamento não está disponível para este serviço.", vbExclamation, "Aviso"
+        Exit Sub
+    End If
+    
+    ' Define o caminho onde o PDF será salvo (pasta TEMP)
+    destino = Environ("TEMP") & "\Orcamento_" & Format(Now, "yyyymmddhhmmss") & ".pdf"
+
+    ' Baixa o arquivo PDF
+    Set http = CreateObject("MSXML2.XMLHTTP")
+    http.Open "GET", url, False
+    http.Send
+    
+    If http.status = 200 Then
+        On Error Resume Next ' Previne falha caso o arquivo já esteja em uso
+        
+        Set stream = CreateObject("ADODB.Stream")
+        If Not stream Is Nothing Then
+            stream.Type = 1 ' binário
+            stream.Open
+            stream.Write http.responseBody
+            
+            ' Salvar o arquivo
+            stream.SaveToFile destino, 2 ' Sobrescreve se já existir
+            stream.Close
+            Set stream = Nothing
+        Else
+            MsgBox "Erro ao criar o objeto Stream.", vbCritical, "Erro"
+            Exit Sub
+        End If
+        
+        On Error GoTo 0 ' Voltar ao modo normal de erro
+    Else
+        MsgBox "Falha ao baixar o orçamento.", vbCritical, "Erro"
+        Exit Sub
+    End If
+    
+    ' Preenche os campos do UserForm Visualizar
+    With Visualizar
+        .lblNome.Caption = historico.lvwHistorico.SelectedItem.SubItems(3) ' Nome na coluna 3
+        .lblIDserv.Caption = idServico
+        .txtOrc.Value = destino ' Caminho do PDF baixado
+        .WebBrowser1.Navigate destino ' Abre no WebBrowser
+        .Show
+    End With
+    
+    ' Limpeza
+    Set http = Nothing
+End Sub
+
+
+--------------
+#Ordem UserForm
+
+Private Sub Label1_Click()
+Unload Me
+End Sub
+
+Private Sub Label7_Click()
+Call FiltrarPorFuncionario(Ordem.lvwOrdem, Ordem.cbbFunc.Value)
+End Sub
+
+Private Sub Label7_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = True
+End Sub
+
+Private Sub Label7_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = False
+End Sub
+
+Private Sub Label8_Click()
+    Dim idOrdem As String
+    
+    ' Verifica se há um item selecionado na ListView
+    If lvwOrdem.SelectedItem Is Nothing Then
+        MsgBox "Por favor, selecione uma ordem para concluir.", vbExclamation
+        Exit Sub
+    End If
+    
+    ' Obtém o ID da ordem selecionada (assumindo que o ID_Ordem está na primeira coluna)
+    idOrdem = lvwOrdem.SelectedItem.Text ' Ou lvwOrdem.SelectedItem.SubItems(1), caso o ID esteja na segunda coluna
+    
+    ' Chama a função para atualizar o status da ordem
+    Call AtualizarStatusOrdem(idOrdem)
+End Sub
+
+Private Sub Label8_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label8.Font.Bold = True
+End Sub
+
+Private Sub Label8_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label8.Font.Bold = False
+End Sub
+
+Private Sub UserForm_Activate()
+HideTitleBarAndBorder7 Me 'hide the titlebar and border
+MakeUserFormTransparent7 Me  'make certain color transparent
+End Sub
+
+Private Sub IcSBdiminuir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+Private Sub IcSBexpandir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+      
+End Sub
+
+Private Sub txtSBsetaDOWN_Click()
+    Me.txtSB2add.Visible = True
+    Me.txtSB2gere.Visible = True
+    Me.txtSBsetaDOWN.Visible = False
+    Me.txtSBsetaUP.Visible = True
+    Me.txtSBbarrinha.Visible = True
+End Sub
+
+Private Sub txtSBsetaUP_Click()
+    Me.txtSB2add.Visible = False
+    Me.txtSB2gere.Visible = False
+    Me.txtSBsetaUP.Visible = False
+    Me.txtSBsetaDOWN.Visible = True
+    Me.txtSBbarrinha.Visible = False
+End Sub
+
+Private Sub UserForm_Click()
+    If lblSidebar.Width > 100 Then
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+
+Private Sub txtSB2Gere_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Gere_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = True
+End Sub
+
+Private Sub txtSB2Add_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Add_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = True
+End Sub
+
+Private Sub txtSBtarefas_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = False
+End Sub
+
+Private Sub txtSBtarefas_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereCli_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereCli_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereFunc_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereFunc_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = True
+
+End Sub
+
+Private Sub txtSBajuda_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = False
+End Sub
+
+Private Sub txtSBajuda_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = True
+End Sub
+
+Private Sub txtSBHist_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = False
+End Sub
+
+Private Sub txtSBHist_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = True
+End Sub
+
+Private Sub txtSBcrm_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = False
+End Sub
+
+Private Sub txtSBcrm_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = True
+End Sub
+
+Private Sub UserForm_Initialize()
+
+EfeitoDiminuir Me
+txtSBpicked.ZOrder (1)
+lblpicked.ZOrder (1)
+lblSidebar.ZOrder (1)
+
+    With Me.lvwOrdem
+        .View = lvwReport
+        .FullRowSelect = True
+        .Gridlines = True
+        .ColumnHeaders.Clear
+        .ColumnHeaders.Add , , "Id Ordem", 80
+        .ColumnHeaders.Add , , "Tarefa", 250
+        .ColumnHeaders.Add , , "Cliente", 100
+        .ColumnHeaders.Add , , "Funcionário", 80
+        .ColumnHeaders.Add , , "Situação", 80
+    End With
+CarregarFunc
+CarregarOrdem Me.lvwOrdem
+End Sub
+
+
+----------------
+#Ordem módulo
+
+
+Sub CarregarFunc()
+    Dim rs As Object
+    Dim sql As String
+    
+    ' Garante que a conexão está ativa
+    If conn Is Nothing Then
+        Conectar
+    End If
+    If conn Is Nothing Then Exit Sub ' Sai se a conexão falhar
+    
+    ' Define a consulta SQL
+    sql = "SELECT Nome FROM BD_Funcionários ORDER BY Nome"
+    
+    ' Cria e executa o recordset
+    Set rs = CreateObject("ADODB.Recordset")
+    rs.Open sql, conn, 1, 1 ' adOpenKeyset, adLockReadOnly
+
+    ' Preenche a ComboBox com "Todos Funcionários" no início
+    Ordem.cbbFunc.Clear
+    Ordem.cbbFunc.AddItem "Todos Funcionários" ' Adiciona a opção no início
+    Do While Not rs.EOF
+        Ordem.cbbFunc.AddItem rs.Fields("Nome").Value
+        rs.MoveNext
+    Loop
+    
+    ' Fecha o recordset
+    rs.Close
+    Set rs = Nothing
+End Sub
+
+
+Public Sub CarregarOrdem(lvwOrdem As ListView)
+    ' Garante que a conexão está ativa
+    If conn Is Nothing Then Call Conectar
+    If conn.State <> 1 Then
+        MsgBox "Erro: conexão com o banco de dados não está ativa.", vbCritical
+        Exit Sub
+    End If
+
+    ' Limpa o ListView antes de preencher
+    lvwOrdem.ListItems.Clear
+
+    ' Declarar variáveis
+    Dim rsTarefas As Object, rsServicos As Object, rsOrdem As Object
+    Dim sqlTarefas As String, sqlServicos As String, sqlOrdem As String, sqlInsert As String
+    Dim item As Object, dataBase As Date, dataTarefa As Date
+    Dim idServico As String, idCliente As String, idFunc As String
+    Dim idTarefa As String, descricaoTarefa As String
+    Dim situacao As String, statusOrdem As String, campoData As String
+    Dim logica As String, valorNum As Integer, unidadeTempo As String, multiplicador As Double
+    Dim i As Integer
+
+    ' Pega a data de hoje para comparação
+    dataBase = Date
+
+    ' Busca todas as regras de tarefas
+    sqlTarefas = "SELECT ID_Tarefas, Texto, Campo_Data, Lógica, Valor_Numérico, Medida_Tempo FROM BD_Tarefas"
+    Set rsTarefas = conn.Execute(sqlTarefas)
+
+    ' Percorre todas as regras de tarefas
+    Do While Not rsTarefas.EOF
+        idTarefa = rsTarefas.Fields("ID_Tarefas").Value
+        descricaoTarefa = rsTarefas.Fields("Texto").Value
+        campoData = rsTarefas.Fields("Campo_Data").Value
+        logica = rsTarefas.Fields("Lógica").Value
+        valorNum = rsTarefas.Fields("Valor_Numérico").Value
+        unidadeTempo = rsTarefas.Fields("Medida_Tempo").Value
+
+        ' Define a unidade de tempo correta para adicionar na data
+        Select Case unidadeTempo
+            Case "Minutos": multiplicador = 1 / 1440
+            Case "Horas": multiplicador = 1 / 24
+            Case "Dias": multiplicador = 1
+            Case "Semanas": multiplicador = 7
+            Case "Meses": multiplicador = 30
+            Case Else: multiplicador = 0
+        End Select
+
+        ' Substitui espaços por "_" para corresponder ao nome real da coluna no banco
+        campoData = Replace(campoData, " ", "_")
+
+        ' Define a tabela correta dependendo do campo de data
+        If campoData = "Data_Entrada" Then
+            sqlServicos = "SELECT s.ID_Serviço, s.ID_Cliente, s.ID_Func, c.Nome AS Cliente, " & _
+                          "f.Nome AS Funcionario, s.[" & campoData & "] AS DataTarefa " & _
+                          "FROM BD_Serviço s " & _
+                          "INNER JOIN BD_Cliente c ON s.ID_Cliente = c.ID_Cliente " & _
+                          "INNER JOIN BD_Funcionários f ON s.ID_Func = f.ID_Func " & _
+                          "WHERE s.[" & campoData & "] IS NOT NULL"
+        Else
+            sqlServicos = "SELECT s.ID_Serviço, s.ID_Cliente, s.ID_Func, c.Nome AS Cliente, " & _
+                          "f.Nome AS Funcionario, r.[" & campoData & "] AS DataTarefa " & _
+                          "FROM BD_Serviço s " & _
+                          "INNER JOIN BD_Cliente c ON s.ID_Cliente = c.ID_Cliente " & _
+                          "INNER JOIN BD_Funcionários f ON s.ID_Func = f.ID_Func " & _
+                          "INNER JOIN BD_RegistroStatus r ON s.ID_Serviço = r.ID_Serviço " & _
+                          "WHERE r.[" & campoData & "] IS NOT NULL"
+        End If
+        
+        Debug.Print sqlServicos  ' Para depuração
+        Set rsServicos = conn.Execute(sqlServicos)
+
+        ' Percorre os serviços
+        Do While Not rsServicos.EOF
+            idServico = rsServicos.Fields("ID_Serviço").Value
+            idCliente = rsServicos.Fields("ID_Cliente").Value
+            idFunc = rsServicos.Fields("ID_Func").Value
+            nomeCliente = rsServicos.Fields("Cliente").Value
+            nomeFuncionario = rsServicos.Fields("Funcionario").Value
+            dataTarefa = rsServicos.Fields("DataTarefa").Value
+
+            ' Calcula a data para a tarefa com base na lógica
+            Select Case logica
+                Case "Após": dataTarefa = dataTarefa + (valorNum * multiplicador)
+                Case "Antes de": dataTarefa = dataTarefa - (valorNum * multiplicador)
+                Case "Imediatamente": dataTarefa = dataTarefa
+            End Select
+
+            ' Verifica se a tarefa já está no BD_Ordem
+            sqlOrdem = "SELECT ID_Ordem, Situação, Status_Ordem FROM BD_Ordem " & _
+                       "WHERE ID_Serviço = '" & idServico & "' AND ID_Tarefas = '" & idTarefa & "'"
+            Set rsOrdem = conn.Execute(sqlOrdem)
+
+            ' Se já existe no BD_Ordem, pega os dados da situação e status
+            If Not rsOrdem.EOF Then
+                idOrdem = rsOrdem.Fields("ID_Ordem").Value
+                situacao = rsOrdem.Fields("Situação").Value
+                statusOrdem = rsOrdem.Fields("Status_Ordem").Value
+            Else
+                ' Define a situação inicial
+                If dataTarefa >= dataBase Then
+                    situacao = "Em andamento"
+                Else
+                    situacao = "Atrasado"
+                End If
+                statusOrdem = "Em aberto"
+
+                ' Insere a nova tarefa no BD_Ordem
+                sqlInsert = "INSERT INTO BD_Ordem (ID_Serviço, ID_Tarefas, Situação, Status_Ordem) VALUES " & _
+                            "('" & idServico & "', '" & idTarefa & "', '" & situacao & "', 'Em aberto')"
+                conn.Execute sqlInsert
+
+                ' Obtém o ID recém-criado
+                Set rsOrdem = conn.Execute(sqlOrdem)
+                If Not rsOrdem.EOF Then idOrdem = rsOrdem.Fields("ID_Ordem").Value
+            End If
+
+            ' Se a tarefa foi concluída, não exibe
+            If statusOrdem <> "Feito" Then
+                ' Adiciona no ListView
+                Set item = lvwOrdem.ListItems.Add(, , idOrdem)
+                item.SubItems(1) = descricaoTarefa
+                item.SubItems(2) = nomeCliente
+                item.SubItems(3) = nomeFuncionario
+                item.SubItems(4) = situacao
+
+                ' Se estiver atrasado, muda a cor de TODOS os subitens para vermelho
+                If situacao = "Atrasado" Then
+                    item.ForeColor = RGB(255, 0, 0) ' Primeira coluna
+                    For i = 1 To 4
+                        item.ListSubItems(i).ForeColor = RGB(255, 0, 0) ' Outras colunas
+                    Next i
+                End If
+            End If
+
+            rsOrdem.Close
+            rsServicos.MoveNext
+        Loop
+
+        rsServicos.Close
+        rsTarefas.MoveNext
+    Loop
+
+    rsTarefas.Close
+End Sub
+
+Public Sub FiltrarPorFuncionario(lvwOrdem As ListView, nomeFuncionario As String)
+    Dim item As ListItem
+    Dim nomeFuncionarioItem As String
+
+    ' Exclui todos os itens da ListView antes de aplicar o filtro
+    lvwOrdem.ListItems.Clear
+
+    ' Recarrega todos os itens, aplicando o filtro de funcionário
+    ' (Assumindo que a função CarregarOrdem é chamada para recarregar os itens)
+    Dim rsTarefas As Object, rsServicos As Object, rsOrdem As Object
+    Dim sqlTarefas As String, sqlServicos As String, sqlOrdem As String
+    Dim itemNovo As ListItem
+    Dim idServico As String, idCliente As String, idFunc As String
+    Dim nomeCliente As String, situacao As String
+    Dim descricaoTarefa As String, statusOrdem As String, dataTarefa As Date
+    Dim idTarefa As String
+
+    ' Chama novamente a função que carrega os dados da ordem
+    ' Para garantir que os itens na ListView sejam filtrados corretamente
+    sqlTarefas = "SELECT ID_Tarefas, Texto, Campo_Data, Lógica, Valor_Numérico, Medida_Tempo FROM BD_Tarefas"
+    Set rsTarefas = conn.Execute(sqlTarefas)
+
+    ' Percorre as tarefas e recarrega os itens na ListView
+    Do While Not rsTarefas.EOF
+        idTarefa = rsTarefas.Fields("ID_Tarefas").Value
+        descricaoTarefa = rsTarefas.Fields("Texto").Value
+        
+        ' Define a consulta de serviços conforme o filtro aplicado
+        sqlServicos = "SELECT s.ID_Serviço, s.ID_Cliente, s.ID_Func, c.Nome AS Cliente, " & _
+                      "f.Nome AS Funcionario, s.Data_Entrada AS DataTarefa " & _
+                      "FROM BD_Serviço s " & _
+                      "INNER JOIN BD_Cliente c ON s.ID_Cliente = c.ID_Cliente " & _
+                      "INNER JOIN BD_Funcionários f ON s.ID_Func = f.ID_Func " & _
+                      "WHERE f.Nome LIKE '%" & nomeFuncionario & "%'"
+        
+        ' Se for "Todos Funcionários", carrega todos
+        If nomeFuncionario = "Todos Funcionários" Then
+            sqlServicos = "SELECT s.ID_Serviço, s.ID_Cliente, s.ID_Func, c.Nome AS Cliente, " & _
+                          "f.Nome AS Funcionario, s.Data_Entrada AS DataTarefa " & _
+                          "FROM BD_Serviço s " & _
+                          "INNER JOIN BD_Cliente c ON s.ID_Cliente = c.ID_Cliente " & _
+                          "INNER JOIN BD_Funcionários f ON s.ID_Func = f.ID_Func"
+        End If
+
+        Set rsServicos = conn.Execute(sqlServicos)
+
+        ' Preenche a ListView com os dados filtrados
+        Do While Not rsServicos.EOF
+            idServico = rsServicos.Fields("ID_Serviço").Value
+            nomeCliente = rsServicos.Fields("Cliente").Value
+            nomeFuncionarioItem = rsServicos.Fields("Funcionario").Value
+            dataTarefa = rsServicos.Fields("DataTarefa").Value
+
+            ' Verifica a situação da tarefa
+            situacao = "Em andamento" ' Ajuste conforme lógica
+
+            ' Adiciona o item à ListView se for do funcionário correto
+            If nomeFuncionario = "Todos Funcionários" Or nomeFuncionarioItem = nomeFuncionario Then
+                Set itemNovo = lvwOrdem.ListItems.Add(, , idServico)
+                itemNovo.SubItems(1) = descricaoTarefa
+                itemNovo.SubItems(2) = nomeCliente
+                itemNovo.SubItems(3) = nomeFuncionarioItem
+                itemNovo.SubItems(4) = situacao
+            End If
+
+            rsServicos.MoveNext
+        Loop
+
+        rsServicos.Close
+        rsTarefas.MoveNext
+    Loop
+
+    rsTarefas.Close
+End Sub
+
+' Módulo: modStatusOrdem
+Public Sub AtualizarStatusOrdem(idOrdem As String)
+    Dim sqlUpdate As String
+    
+    ' Atualiza o Status_Ordem para "Feito" na tabela BD_Ordem
+    sqlUpdate = "UPDATE BD_Ordem SET Status_Ordem = 'Feito' WHERE ID_Ordem = '" & idOrdem & "'"
+    
+    On Error GoTo ErrorHandler
+    conn.Execute sqlUpdate
+    
+    MsgBox "Ordem concluída com sucesso!", vbInformation
+    Exit Sub
+
+ErrorHandler:
+    MsgBox "Erro ao atualizar o status da ordem: " & Err.Description, vbCritical
+End Sub
+
+
+
+
+----------
+Visualizar UserForm
+
+Private Sub Label1_Click()
+Unload Me
+End Sub
+
+Private Sub Label7_Click()
+Call AtualizarOrcamento
+End Sub
+
+Private Sub Label7_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = True
+End Sub
+
+Private Sub Label7_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label7.Font.Bold = False
+End Sub
+
+Private Sub Label9_Click()
+AbrirOrcamentoNoNavegador
+End Sub
+
+Private Sub Label9_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label9.Font.Bold = True
+End Sub
+
+Private Sub Label9_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+Label9.Font.Bold = False
+End Sub
+
+Private Sub UserForm_Activate()
+'HideTitleBarAndBorder7 Me 'hide the titlebar and border
+'MakeUserFormTransparent7 Me  'make certain color transparent
+End Sub
+
+Private Sub IcSBdiminuir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+End Sub
+Private Sub IcSBexpandir_Click()
+    If lblSidebar.Width < 100 Then
+        EfeitoAumentar Me
+    Else
+        EfeitoDiminuir Me
+    End If
+      
+End Sub
+
+Private Sub txtSBsetaDOWN_Click()
+    Me.txtSB2add.Visible = True
+    Me.txtSB2gere.Visible = True
+    Me.txtSBsetaDOWN.Visible = False
+    Me.txtSBsetaUP.Visible = True
+    Me.txtSBbarrinha.Visible = True
+End Sub
+
+Private Sub txtSBsetaUP_Click()
+    Me.txtSB2add.Visible = False
+    Me.txtSB2gere.Visible = False
+    Me.txtSBsetaUP.Visible = False
+    Me.txtSBsetaDOWN.Visible = True
+    Me.txtSBbarrinha.Visible = False
+End Sub
+
+Private Sub UserForm_Click()
+    If lblSidebar.Width > 100 Then
+        EfeitoDiminuir Me
+    End If
+End Sub
+
+
+Private Sub txtSB2Gere_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Gere_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2gere.Font.Bold = True
+End Sub
+
+Private Sub txtSB2Add_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = False
+End Sub
+
+Private Sub txtSB2Add_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSB2add.Font.Bold = True
+End Sub
+
+Private Sub txtSBtarefas_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = False
+End Sub
+
+Private Sub txtSBtarefas_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBtarefas.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereCli_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereCli_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereCli.Font.Bold = True
+End Sub
+
+Private Sub txtSBGereFunc_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = False
+End Sub
+
+Private Sub txtSBGereFunc_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBGereFunc.Font.Bold = True
+
+End Sub
+
+Private Sub txtSBajuda_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = False
+End Sub
+
+Private Sub txtSBajuda_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBajuda.Font.Bold = True
+End Sub
+
+Private Sub txtSBHist_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = False
+End Sub
+
+Private Sub txtSBHist_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBHist.Font.Bold = True
+End Sub
+
+Private Sub txtSBcrm_MouseUp(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = False
+End Sub
+
+Private Sub txtSBcrm_MouseDown(ByVal Button As Integer, ByVal Shift As Integer, ByVal X As Single, ByVal Y As Single)
+txtSBcrm.Font.Bold = True
+End Sub
+
+Private Sub UserForm_Initialize()
+
+EfeitoDiminuir Me
+txtSBpicked.ZOrder (1)
+lblpicked.ZOrder (1)
+lblSidebar.ZOrder (1)
+Label7.ZOrder (1)
+Label8.ZOrder (1)
+Label9.ZOrder (1)
+lblNome.ZOrder (1)
+lblIDserv.ZOrder (1)
+End Sub
+
+----------------
+#Visualizar módulo
+
+Public Sub AtualizarOrcamento()
+    Dim linkOrcamento As String
+    Dim idServico As String
+    Dim sql As String
+    
+    ' Obtém o ID do serviço e valida se existe
+    idServico = Visualizar.lblIDserv.Caption
+    If idServico = "" Then
+        MsgBox "ID do serviço não encontrado.", vbExclamation, "Aviso"
+        Exit Sub
+    End If
+    
+    ' Chama a função para fazer upload do novo orçamento e obter o link
+    linkOrcamento = UploadOrcamento()
+    If linkOrcamento = "" Then Exit Sub ' Se o upload falhar, sai
+    
+    ' Atualiza o campo txtOrc no UserForm
+    Visualizar.txtOrc.Value = linkOrcamento
+
+    ' Verifica se a conexão existe e está aberta
+    If conn Is Nothing Then Call Conectar
+    If conn Is Nothing Or conn.State = 0 Then
+        MsgBox "Erro ao conectar ao banco de dados.", vbCritical, "Erro"
+        Exit Sub
+    End If
+    
+    ' Comando SQL para atualizar o orçamento no banco
+    sql = "UPDATE BD_Serviço SET Orçamento = '" & linkOrcamento & "' WHERE ID_Serviço = '" & idServico & "'"
+    
+    ' Executa o comando SQL
+    On Error Resume Next
+    conn.Execute sql
+    If Err.Number <> 0 Then
+        MsgBox "Erro ao atualizar orçamento: " & Err.Description, vbCritical, "Erro"
+        Exit Sub
+    End If
+    On Error GoTo 0
+    
+    MsgBox "Orçamento atualizado com sucesso!", vbInformation, "Sucesso"
+End Sub
+
+
+
+Public Sub AbrirOrcamentoNoNavegador()
+    Dim pdfPath As String
+
+    ' Obtém o caminho do arquivo do txtOrc
+    pdfPath = Visualizar.txtOrc.Value
+
+    ' Verifica se o caminho está preenchido
+    If pdfPath = "" Then
+        MsgBox "Nenhum orçamento foi carregado.", vbExclamation, "Aviso"
+        Exit Sub
+    End If
+
+    ' Abre o PDF no navegador padrão
+    ThisWorkbook.FollowHyperlink pdfPath
+End Sub
+
+
+------------
+Módulo da conexão
+
+' Variável de conexão global
+Public conn As Object
+
+' Sub para conectar ao Azure SQL
+Sub Conectar()
+    ' Se já existir uma conexão, fecha antes de abrir outra
+    If Not conn Is Nothing Then
+        If conn.State = 1 Then conn.Close
+        Set conn = Nothing
+    End If
+
+    ' Criar nova conexão
+    Set conn = CreateObject("ADODB.Connection")
+    conn.ConnectionTimeout = 60 ' Aumente para 60 segundos ou mais
+    conn.CommandTimeout = 60 ' Aumente para 60 segundos ou mais
+    Dim strConn As String
+    strConn = "Provider=MSOLEDBSQL;Server=tcp:atualizadow.database.windows.net,1433;" & _
+              "Database=CloudDataBase;Uid=pliniocloud;Pwd=Plinio01;" & _
+              "Encrypt=yes;TrustServerCertificate=no;"
+
+    ' Tenta abrir a conexão
+    On Error Resume Next
+    conn.Open strConn
+    If Err.Number <> 0 Then
+        MsgBox "Erro ao conectar: " & Err.Description, vbCritical
+        Set conn = Nothing
+        Exit Sub
+    End If
+    On Error GoTo 0
+End Sub
+
+
+
+
+
+
+
+
+
+
